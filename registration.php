@@ -35,7 +35,7 @@ if (isset($_POST["send"])) {
 		$insert_user_sql = "INSERT INTO registr (name, surname, tel, pass) VALUES ('$name','$surname', '$tel', '$hashed_password')";
 
 		if ($conn->query($insert_user_sql) === TRUE) {
-			header('LOCATION: profile.php');
+			header('LOCATION: index.php');
 		} else {
 			$error_massage = "Ошибка регистрации: " . $conn->error;;
 		}

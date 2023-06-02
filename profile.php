@@ -1,3 +1,19 @@
+<?php 
+session_start();
+
+// Проверка, что пользователь авторизован
+if (isset($_SESSION['name1']) && isset($_SESSION['surname1']) && isset($_SESSION['tel1'])) {
+    $username = $_SESSION['name1'];
+		$usersurname = $_SESSION['surname1'];
+		$tel = $_SESSION['tel1'];
+} else {
+    // Пользователь не авторизован, выполните соответствующие действия
+    echo "Вы не авторизованы!";
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -91,9 +107,9 @@
 			<div class="row g-5">
 				<div class="prof col-4 p-4 element-animation">
 					<img src="img/otz3.png" style="width: 70%; margin-left: 15%; margin-top: 0; margin-bottom: 22px;" class="card-img-top" alt="">
-					<p style="text-align: center; color: rgb(41, 40, 40);">Елена Петрова</p>
-					<p style="line-height: 30px;">8 (900) 566-44-44</p>
-					<p style="line-height: 30px;">m.motroskin@mail.ru</p>
+					<p style="text-align: center; color: rgb(41, 40, 40);"><?php echo $username, " ", $usersurname ?></p>
+					<p style="line-height: 30px;"><?php echo $tel ?></p>
+					<p class="prof-otm" style="line-height: 20px; font-size: 20px;">Добавить почту</p>
 					<p class="prof-otm" style="line-height: 20px; font-size: 20px;">Изменить пароль</p>
 				</div>
 				<div class="col-7 ml-5 element-animation">
@@ -105,7 +121,7 @@
 						<div class="d-flex justify-content-between mt-5">
 							<p style="font-size: 28px; color: rgb(85, 81, 81);">1200p</p>
 							<div>
-								<p class="prof-otm" style="float: left;">Изменить</p>
+								<p class="prof-otm " style="float: left;">Изменить</p>
 								<p class="prof-otm" style="float: left; margin-left: 12px;">Отменить</p>
 							</div>
 						</div>
