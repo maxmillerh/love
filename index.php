@@ -173,7 +173,7 @@ include 'registration.php';
 							<h5 class="card-title">2D эффект</h5>
 							<div class="d-flex justify-content-between align-items-center mb-4">
 								<p class="card-text">1200р</p>
-								<a href="#" class="btn btn-header">Записаться</a>
+								<a href="#zaya" id="btnUslNar2D" class="btn btn-header">Записаться</a>
 							</div>
 						</div>
 					</div>
@@ -185,7 +185,7 @@ include 'registration.php';
 							<h5 class="card-title">3D эффект</h5>
 							<div class="d-flex justify-content-between align-items-center mb-4">
 								<p class="card-text">1300р</p>
-								<a href="#" class="btn btn-header">Записаться</a>
+								<a href="#zaya" id="btnUslNar3D" class="btn btn-header">Записаться</a>
 							</div>
 						</div>
 					</div>
@@ -197,7 +197,7 @@ include 'registration.php';
 							<h5 class="card-title">4D эффект</h5>
 							<div class="d-flex justify-content-between align-items-center mb-4">
 								<p class="card-text">1400р</p>
-								<a href="#" class="btn btn-header">Записаться</a>
+								<a href="#zaya" id="btnUslNar4D" class="btn btn-header">Записаться</a>
 							</div>
 						</div>
 					</div>
@@ -209,7 +209,7 @@ include 'registration.php';
 							<h5 class="card-title">Y эффект</h5>
 							<div class="d-flex justify-content-between align-items-center mb-4">
 								<p class="card-text">1300р</p>
-								<a href="#" class="btn btn-header">Записаться</a>
+								<a href="#zaya" id="btnUslNarY" class="btn btn-header">Записаться</a>
 							</div>
 						</div>
 					</div>
@@ -221,7 +221,7 @@ include 'registration.php';
 							<h5 class="card-title">Снятие чужой работы</h5>
 							<div class="d-flex justify-content-between align-items-center mb-4">
 								<p class="card-text">100р</p>
-								<a href="#" class="btn btn-header">Записаться</a>
+								<a href="#zaya" id="btnUslNarSnyat" class="btn btn-header">Записаться</a>
 							</div>
 						</div>
 					</div>
@@ -236,7 +236,7 @@ include 'registration.php';
 							<h5 class="card-title">Усики</h5>
 							<div class="d-flex justify-content-between align-items-center mb-4">
 								<p class="card-text">100р</p>
-								<a href="#" class="btn btn-header">Записаться</a>
+								<a href="#zaya" id="btnUslShugUs" class="btn btn-header">Записаться</a>
 							</div>
 						</div>
 					</div>
@@ -248,7 +248,7 @@ include 'registration.php';
 							<h5 class="card-title">Подмышечные впадины</h5>
 							<div class="d-flex justify-content-between align-items-center mb-4">
 								<p class="card-text">200р</p>
-								<a href="#" class="btn btn-header">Записаться</a>
+								<a href="#zaya" id="btnUslShugPodm" class="btn btn-header">Записаться</a>
 							</div>
 						</div>
 					</div>
@@ -260,7 +260,7 @@ include 'registration.php';
 							<h5 class="card-title">Руки до локтя</h5>
 							<div class="d-flex justify-content-between align-items-center mb-4">
 								<p class="card-text">250р</p>
-								<a href="#" class="btn btn-header">Записаться</a>
+								<a href="#zaya" id="btnUslShugRukDo" class="btn btn-header">Записаться</a>
 							</div>
 						</div>
 					</div>
@@ -272,7 +272,7 @@ include 'registration.php';
 							<h5 class="card-title">Руки полностью</h5>
 							<div class="d-flex justify-content-between align-items-center mb-4">
 								<p class="card-text">500р</p>
-								<a href="#" class="btn btn-header">Записаться</a>
+								<a href="#zaya" id="btnUslShugRukAll" class="btn btn-header">Записаться</a>
 							</div>
 						</div>
 					</div>
@@ -284,7 +284,7 @@ include 'registration.php';
 							<h5 class="card-title">Ноги до колена</h5>
 							<div class="d-flex justify-content-between align-items-center mb-4">
 								<p class="card-text">500р</p>
-								<a href="#" class="btn btn-header">Записаться</a>
+								<a href="#zaya" id="btnUslShugFootDo" class="btn btn-header">Записаться</a>
 							</div>
 						</div>
 					</div>
@@ -296,7 +296,7 @@ include 'registration.php';
 							<h5 class="card-title">Ноги полностью</h5>
 							<div class="d-flex justify-content-between align-items-center mb-4">
 								<p class="card-text">900р</p>
-								<a href="#" class="btn btn-header">Записаться</a>
+								<a href="#zaya" id="btnUslShugFootAll" class="btn btn-header">Записаться</a>
 							</div>
 						</div>
 					</div>
@@ -308,7 +308,7 @@ include 'registration.php';
 							<h5 class="card-title">Бикини класика</h5>
 							<div class="d-flex justify-content-between align-items-center mb-4">
 								<p class="card-text">500р</p>
-								<a href="#" class="btn btn-header">Записаться</a>
+								<a href="#zaya" id="btnUslShugBicClass" class="btn btn-header">Записаться</a>
 							</div>
 						</div>
 					</div>
@@ -320,7 +320,7 @@ include 'registration.php';
 							<h5 class="card-title">Бикини глубокое</h5>
 							<div class="d-flex justify-content-between align-items-center mb-4">
 								<p class="card-text">800р</p>
-								<a href="#" class="btn btn-header">Записаться</a>
+								<a href="#zaya" id="btnUslShugBicGlub" class="btn btn-header">Записаться</a>
 							</div>
 						</div>
 					</div>
@@ -332,7 +332,7 @@ include 'registration.php';
 							<h5 class="card-title">Блеск-тату</h5>
 							<div class="d-flex justify-content-between align-items-center mb-4">
 								<p class="card-text">250р</p>
-								<a href="#" class="btn btn-header">Записаться</a>
+								<a href="#zaya" id="btnUslShugTatu" class="btn btn-header">Записаться</a>
 							</div>
 						</div>
 					</div>
@@ -347,7 +347,7 @@ include 'registration.php';
 							<h5 class="card-title">Брови напыление</h5>
 							<div class="d-flex justify-content-between align-items-center mb-4">
 								<p class="card-text">3000р</p>
-								<a href="#" class="btn btn-header">Записаться</a>
+								<a href="#zaya" id="btnUslPermNap" class="btn btn-header">Записаться</a>
 							</div>
 						</div>
 					</div>
@@ -356,10 +356,10 @@ include 'registration.php';
 					<div class="card">
 						<div class="card-body">
 							<img src="img/perm2.png" class="card-img-top" alt="...">
-							<h5 class="card-title">Брове коррекция</h5>
+							<h5 class="card-title">Брови коррекция</h5>
 							<div class="d-flex justify-content-between align-items-center mb-4">
 								<p class="card-text">2000р</p>
-								<a href="#" class="btn btn-header">Записаться</a>
+								<a href="#zaya" id="btnUslPermCor" class="btn btn-header">Записаться</a>
 							</div>
 						</div>
 					</div>
@@ -371,7 +371,7 @@ include 'registration.php';
 							<h5 class="card-title">Глаза Напыление</h5>
 							<div class="d-flex justify-content-between align-items-center mb-4">
 								<p class="card-text">3000р</p>
-								<a href="#" class="btn btn-header">Записаться</a>
+								<a href="#zaya" id="btnUslPermGlasNap" class="btn btn-header">Записаться</a>
 							</div>
 						</div>
 					</div>
@@ -383,7 +383,7 @@ include 'registration.php';
 							<h5 class="card-title">Глаза коррекция</h5>
 							<div class="d-flex justify-content-between align-items-center mb-4">
 								<p class="card-text">2000р</p>
-								<a href="#" class="btn btn-header">Записаться</a>
+								<a href="#zaya" id="btnUslPermGlasCor" class="btn btn-header">Записаться</a>
 							</div>
 						</div>
 					</div>
@@ -395,7 +395,7 @@ include 'registration.php';
 							<h5 class="card-title">Губы напыление</h5>
 							<div class="d-flex justify-content-between align-items-center mb-4">
 								<p class="card-text">2000р</p>
-								<a href="#" class="btn btn-header">Записаться</a>
+								<a href="#zaya" id="btnUslPermGubNap" class="btn btn-header">Записаться</a>
 							</div>
 						</div>
 					</div>
@@ -407,7 +407,7 @@ include 'registration.php';
 							<h5 class="card-title">Губы коррекция</h5>
 							<div class="d-flex justify-content-between align-items-center mb-4">
 								<p class="card-text">2000р</p>
-								<a href="#" class="btn btn-header">Записаться</a>
+								<a href="#zaya" id="btnUslPermGubCor" class="btn btn-header">Записаться</a>
 							</div>
 						</div>
 					</div>
@@ -419,7 +419,7 @@ include 'registration.php';
 							<h5 class="card-title">Микроблейдинг</h5>
 							<div class="d-flex justify-content-between align-items-center mb-4">
 								<p class="card-text">4000р</p>
-								<a href="#" class="btn btn-header">Записаться</a>
+								<a href="#zaya" id="btnUslPermMicro" class="btn btn-header">Записаться</a>
 							</div>
 						</div>
 					</div>
@@ -431,7 +431,7 @@ include 'registration.php';
 							<h5 class="card-title">Микроблейдинг коррекция</h5>
 							<div class="d-flex justify-content-between align-items-center mb-4">
 								<p class="card-text">2500р</p>
-								<a href="#" class="btn btn-header">Записаться</a>
+								<a href="#zaya" id="btnUslPermMicroCor" class="btn btn-header">Записаться</a>
 							</div>
 						</div>
 					</div>

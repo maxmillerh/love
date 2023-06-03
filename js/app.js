@@ -199,3 +199,119 @@ permonentnyi_usluga.onclick = function(){
   permonentnyi_usluga.classList.add('activete');
 
 }
+
+
+  var btnclass = document.getElementById('btnUslNarClass');
+  btnclass.onclick = function() {
+    document.getElementById("procedure2").value = "Наращивание классика";
+  }
+
+	var btn2D = document.getElementById('btnUslNar2D');
+  btn2D.onclick = function() {
+    document.getElementById("procedure2").value = "Наращивание 2D";
+  }
+
+	var btn3D = document.getElementById('btnUslNar3D');
+  btn3D.onclick = function() {
+    document.getElementById("procedure2").value = "Наращивание 3D";
+  }
+
+	var btn4D = document.getElementById('btnUslNar4D');
+  btn4D.onclick = function() {
+    document.getElementById("procedure2").value = "Наращивание 4D";
+  }
+
+	var btnY = document.getElementById('btnUslNarY');
+  btnY.onclick = function() {
+    document.getElementById("procedure2").value = "Наращивание Y-эффект";
+  }
+
+	var btnSnyat = document.getElementById('btnUslNarSnyat');
+  btnSnyat.onclick = function() {
+    document.getElementById("procedure2").value = "Снятие чужой работы";
+  }
+
+	var btnUs = document.getElementById('btnUslShugUs');
+  btnUs.onclick = function() {
+    document.getElementById("procedure2").value = "Шугаринг усики";
+  }
+
+	var btnPodm = document.getElementById('btnUslShugPodm');
+  btnPodm.onclick = function() {
+    document.getElementById("procedure2").value = "Шугаринг подмышечные впадины";
+  }
+
+	var btnRukDo = document.getElementById('btnUslShugRukDo');
+  btnRukDo.onclick = function() {
+    document.getElementById("procedure2").value = "Шугаринг Руки до локтя";
+  }
+
+	var btnRukAll = document.getElementById('btnUslShugRukAll');
+  btnRukAll.onclick = function() {
+    document.getElementById("procedure2").value = "Шугаринг Руки Полностью";
+  }
+
+	var btnFootDo = document.getElementById('btnUslShugFootDo');
+  btnFootDo.onclick = function() {
+    document.getElementById("procedure2").value = "Шугаринг Ноги до колена";
+  }
+
+	var btnFootAll = document.getElementById('btnUslShugFootAll');
+  btnFootAll.onclick = function() {
+    document.getElementById("procedure2").value = "Шугаринг Ноги полностью";
+  }
+
+	var btnBicClass = document.getElementById('btnUslShugBicClass');
+  btnBicClass.onclick = function() {
+    document.getElementById("procedure2").value = "Шугаринг Бикини класика";
+  }
+
+	var btnBicGlub = document.getElementById('btnUslShugBicGlub');
+  btnBicGlub.onclick = function() {
+    document.getElementById("procedure2").value = "Шугаринг Бикини глубокое";
+  }
+
+	var btnBicTatu = document.getElementById('btnUslShugTatu');
+  btnBicTatu.onclick = function() {
+    document.getElementById("procedure2").value = "Блеск-тату";
+  }
+
+	var btnPermNap = document.getElementById('btnUslPermNap');
+  btnPermNap.onclick = function() {
+    document.getElementById("procedure2").value = "Перманентный макияж напыление бровей";
+  }
+
+	var btnPermCor = document.getElementById('btnUslPermCor');
+  btnPermCor.onclick = function() {
+    document.getElementById("procedure2").value = "Перманентный макияж коррекция Бровей";
+  }
+
+	var btnPermGlasNap = document.getElementById('btnUslPermGlasNap');
+  btnPermGlasNap.onclick = function() {
+    document.getElementById("procedure2").value = "Перманентный макияж глаза напыление";
+  }
+
+	var btnPermGlasCor = document.getElementById('btnUslPermGlasCor');
+  btnPermGlasCor.onclick = function() {
+    document.getElementById("procedure2").value = "Перманентный макияж коррекция глаз";
+  }
+
+	var btnPermGubNap = document.getElementById('btnUslPermGubNap');
+  btnPermGubNap.onclick = function() {
+    document.getElementById("procedure2").value = "Перманентный макияж напыление губ";
+  }
+
+	var btnPermGubCor = document.getElementById('btnUslPermGubCor');
+  btnPermGubCor.onclick = function() {
+    document.getElementById("procedure2").value = "Перманентный макияж коррекция губ";
+  }
+
+	var btnUslPermMicro = document.getElementById('btnUslPermMicro');
+  btnUslPermMicro.onclick = function() {
+    document.getElementById("procedure2").value = "Перманентный макияж микроблейдинг";
+  }
+
+	var btnUslPermMicroCor = document.getElementById('btnUslPermMicroCor');
+  btnUslPermMicroCor.onclick = function() {
+    document.getElementById("procedure2").value = "Перманентный макияж микроблейдинг коррекция";
+  }
