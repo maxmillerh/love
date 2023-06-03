@@ -1,13 +1,13 @@
 <?php
-	session_start();
+session_start();
+
 // Проверка, была ли отправлена форма авторизации
 if (isset($_POST["send1"])) {
 	// Получение данных из формы
-	
 	$tel1 = $_POST["tel1"];
-	$pass1 = $_POST["pass1"];	
+	$pass1 = $_POST["pass1"];
 
-	// Подключение к базе данных 
+	// Подключение к базе данных
 	$servername = "localhost";
 	$dbusername = "root";
 	$dbpassword = "";
@@ -28,24 +28,24 @@ if (isset($_POST["send1"])) {
 	if ($select_user_result->num_rows == 1) {
 		$user = $select_user_result->fetch_assoc();
 		$name1 = $user["name"]; // Получение имени пользователя из базы данных
-    $_SESSION['name1'] = $name1; // Сохранение имени пользователя в сесси
-		$surname1 = $user["surname"]; // Получение имени пользователя из базы данных
-    $_SESSION['surname1'] = $surname1; // Сохранение имени пользователя в сесси
-		$tel1 = $user["tel"]; // Получение имени пользователя из базы данных
-    $_SESSION['tel1'] = $tel1; // Сохранение имени пользователя в сесси
+		$_SESSION['name1'] = $name1; // Сохранение имени пользователя в сессии
+		$surname1 = $user["surname"]; // Получение фамилии пользователя из базы данных
+		$_SESSION['surname1'] = $surname1; // Сохранение фамилии пользователя в сессии
+		$tel1 = $user["tel"]; // Получение телефона пользователя из базы данных
+		$_SESSION['tel1'] = $tel1; // Сохранение телефона пользователя в сессии
 		// Проверка пароля
 		if (password_verify($pass1, $user["pass"])) {
-			// Успешный вход, перенаправление на другую страницу
-			header(('LOCATION: profile.php'));
+			// Успешный вход
+			$_SESSION['authorized'] = true; // Сохранение статуса авторизации в сессии
+			header('Location: profile.php');
+			exit();
 		} else {
 			// Неправильный пароль
 			$error_massage = "Неверный пароль";
 		}
 	} else {
-		$error_massage = "пользователь не найден";
+		$error_massage = "Пользователь не найден";
 	}
-
-
 
 	$conn->close();
 }

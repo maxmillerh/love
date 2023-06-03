@@ -1,6 +1,6 @@
-<?php 
+<?php
 include 'zayavka.php';
-include 'login.php'; 
+include 'login.php';
 include 'registration.php';
 ?>
 
@@ -55,7 +55,45 @@ include 'registration.php';
 						</li>
 					</ul>
 
-					<button class="btn btn-header" data-bs-toggle="modal" data-bs-target="#exampleModal">Войти</button>
+					<?php
+					session_start();
+
+					// Проверяем, авторизован ли пользователь
+					$authorized = false; // Предположим, что пользователь не авторизован
+					if (isset($_SESSION['authorized']) && $_SESSION['authorized'] === true) {
+						$authorized = true; // Если пользователь авторизован, устанавливаем значение в true
+					}
+					?>
+
+					<!-- Блок для неавторизованного пользователя -->
+					<?php if (!$authorized) : ?>
+						<button class="btn btn-header" data-bs-toggle="modal" data-bs-target="#exampleModal">Войти</button>
+					<?php endif; ?>
+
+					<!-- Блок для авторизованного пользователя -->
+					<?php if ($authorized) : ?>
+						<?php
+
+					// Проверка, был ли выполнен запрос на выход
+					if (isset($_GET["logout"])) {
+						// Очистка всех сессионных данных
+						session_unset();
+
+						// Уничтожение сессии
+						session_destroy();
+
+						// Перенаправление на главную
+						header(('LOCATION: index.php'));
+						exit();
+					}
+					?>
+					<div class="gap-2 d-flex">
+						<a href="profile.php" class="btn btn-header">Профиль</a>
+						<a href="?logout=true" class="btn btn-header">Выйти</a>
+					</div>
+
+					<?php endif; ?>
+
 
 				</div>
 			</div>
@@ -123,7 +161,7 @@ include 'registration.php';
 							<h5 class="card-title">Классика</h5>
 							<div class="d-flex justify-content-between align-items-center mb-4">
 								<p class="card-text">1000р</p>
-								<a href="#" class="btn btn-header">Записаться</a>
+								<a href="#zaya" id="btnUslNarClass" class="btn btn-header">Записаться</a>
 							</div>
 						</div>
 					</div>
@@ -724,41 +762,75 @@ include 'registration.php';
 	<div class="shadow-blok mt-5 mb-5" style="float: right; transform: rotate(180deg); width: 60%; "></div>
 
 
+	<!-- Блок для неавторизованного пользователя -->
+	<?php if (!$authorized) : ?>
 
-	<zayavka class="zayavka">
-		<div class=" mb-5 pt-5">
-			<div class="container">
-				<div id="zaya" class="help1">
-					<h3 class="title-design element-animation">Оставить заявку</h3>
-				</div>
 
-				<div class="row teni br-10 element-animation">
 
-					<form action="" class="col-6 br-10 block-zaya" method="post" name="zayavka">
-						<input name="name2" id="name2" type="text" placeholder="Имя" required>
-						<input name="surname2" id="surname2" type="text" placeholder="Фамилия" required>
-						<input name="tel2" id="tel2" type="tel" placeholder="Номер телефона" required>
-						<input name="procedure2" id="procedure" type="text" list="datalistOptions" placeholder="Процедура" require>
-						<datalist id="datalistOptions">
-							<option value="Наращивание классика">
-							<option value="Наращивание 2D">
-							<option value="Наращивание 3D">
-							<option value="Наращивание Y-эффект">
-							<option value="Снятие чужой работы">
-						</datalist>
-						<input name="date2" id="date" type="date" placeholder="Дата" required>
-						<input name="time2" id="time" type="time" placeholder="Время" required>
-						<button name="submit" class="btn btn-header d-block mt-4 btn-zaya">Записаться</button>
+		<zayavka class="zayavka">
+			<div class=" mb-5 pt-5">
+				<div class="container">
+					<div id="zaya" class="help1">
+						<h3 class="title-design element-animation">Оставить заявку</h3>
+					</div>
 
-					</form>
-					<div class="col-6 br-10 z-img br-10 d-flex justify-content-center align-items-center">
-						<p>Красивой <br> быть просто</p>
+					<div class="row teni br-10 element-animation">
+
+						<form action="" class="col-6 br-10 block-zaya" method="post" name="zayavka">
+							<input name="name2" id="name2" type="text" placeholder="Имя" required>
+							<input name="surname2" id="surname2" type="text" placeholder="Фамилия" required>
+							<input name="tel2" id="tel2" type="tel" placeholder="Номер телефона" required>
+							<input name="procedure2" id="procedure2" type="text" list="datalistOptions" placeholder="Процедура" require>
+							<datalist id="datalistOptions">
+								<option value="Наращивание классика">
+								<option value="Наращивание 2D">
+								<option value="Наращивание 3D">
+								<option value="Наращивание Y-эффект">
+								<option value="Снятие чужой работы">
+							</datalist>
+							<input name="date2" id="date" type="date" placeholder="Дата" required>
+							<input name="time2" id="time" type="time" placeholder="Время" required>
+							<button name="submit" class="btn btn-header d-block mt-4 btn-zaya">Записаться</button>
+
+						</form>
+						<div class="col-6 br-10 z-img br-10 d-flex justify-content-center align-items-center">
+							<p>Красивой <br> быть просто</p>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 
-	</zayavka>
+		</zayavka>
+
+	<?php endif; ?>
+
+	<!-- Блок для авторизованного пользователя -->
+	<?php if ($authorized) : ?>
+
+		<zayavka class="zayavka">
+			<div class=" mb-5 pt-5">
+				<div class="container">
+					<div id="zaya" class="help1">
+						<h3 style="margin-top: 0px; margin-bottom: 40px;" class="title-design element-animation">Оставить заявку</h3>
+					</div>
+
+					<div class="row teni br-10 element-animation">
+
+						<div class="col-6 br-10 block-zaya ">
+							<input name="date" id="date" type="date" placeholder="Дата">
+							<input name="time" id="time" type="time" placeholder="Время">
+							<button class="btn btn-header d-block mt-4 btn-zaya">Записаться</button>
+						</div>
+						<div class="col-6 br-10 z-img br-10 d-flex justify-content-center align-items-center">
+							<p>Красивой <br> быть просто</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</zayavka>
+
+	<?php endif; ?>
+
 
 
 
@@ -811,7 +883,7 @@ include 'registration.php';
 				</div>
 				<div class="modal-body">
 					<input name="tel1" id="tel1" type="tel" placeholder="Номер телефона" required>
-					<input name="pass1" id="pass1" type="password" placeholder="Пароль"  required>
+					<input name="pass1" id="pass1" type="password" placeholder="Пароль" required>
 				</div>
 				<div class="modal-footer justify-content-between ">
 					<div class="">
@@ -824,7 +896,7 @@ include 'registration.php';
 		</div>
 	</div>
 
-	
+
 
 	<!-- Modal-registr -->
 	<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
@@ -856,7 +928,7 @@ include 'registration.php';
 	</div>
 
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/app.js"></script>
 </body>
