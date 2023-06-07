@@ -16,6 +16,18 @@ $result = $conn->query($query);
 
 
 
+// Проверка, был ли выполнен запрос на выход
+if (isset($_GET["logout"])) {
+	// Очистка всех сессионных данных
+	session_unset();
+
+	// Уничтожение сессии
+	session_destroy();
+
+	// Перенаправление на главную
+	header(('LOCATION: index.php'));
+	exit();
+}
 
 ?>
 
@@ -37,6 +49,24 @@ $result = $conn->query($query);
 
 <body>
 
+
+	<header class="header  ">
+
+		<nav class="navbar navbar-expand-lg header-bg">
+			<div class="container d-flex justify-content-beetwen" style="background-color: #F5F5F7;">
+
+				<a class="navbar-brand logo" href="index.php">Lubov</a>
+				<p>Вы аторизовались как Администратор</p>
+				<a href="?logout=true" class="btn btn-header">Выйти</a>
+
+
+
+
+			</div>
+		</nav>
+	</header>
+	<!-- header-end -->
+
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
@@ -55,11 +85,12 @@ $result = $conn->query($query);
 						// Дальнейшая обработка данных...
 						echo "<div class='prof zapis p-4 pl-5 mt-4'>";
 						echo "<p style='font-size: 26px; color: rgb(48, 47, 47); margin-bottom: 15px;'>" . $name . " " . $surname . "</p>";
-						echo "<p style='font-size: 20px; color: rgb(48, 47, 47);'>" . $proc . " | Дата: " . $date . " | Время: " . $time ."</p>";
+						echo "<p style='font-size: 20px; color: rgb(48, 47, 47);'>" . $proc . " | Дата: " . $date . " | Время: " . $time . "</p>";
 						echo "</div>";
 					}
 				} else {
-					echo "Записи не найдены";
+					echo  "<p style='font-size:30px;'>Записей нет</p>";
+
 				}
 
 

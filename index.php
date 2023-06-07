@@ -63,19 +63,22 @@ include 'registration.php';
 					session_start();
 
 					// Проверяем, авторизован ли пользователь
-					$authorized = false; // Предположим, что пользователь не авторизован
-					if (isset($_SESSION['authorized']) && $_SESSION['authorized'] === true) {
-						$authorized = true; // Если пользователь авторизован, устанавливаем значение в true
+					$authorized = 'none'; // Предположим, что пользователь не авторизован
+					if (isset($_SESSION['authorized']) && $_SESSION['authorized'] === 'user') {
+						$authorized = 'user'; // Если пользователь авторизован, устанавливаем значение 
+					}
+					if (isset($_SESSION['authorized']) && $_SESSION['authorized'] === 'admin') {
+						$authorized = 'admin'; // Если пользователь авторизован, устанавливаем значение 
 					}
 					?>
 
 					<!-- Блок для неавторизованного пользователя -->
-					<?php if (!$authorized) : ?>
+					<?php if ($authorized == 'none') : ?>
 						<button class="btn btn-header" data-bs-toggle="modal" data-bs-target="#exampleModal">Войти</button>
 					<?php endif; ?>
 
 					<!-- Блок для авторизованного пользователя -->
-					<?php if ($authorized) : ?>
+					<?php if ($authorized == 'user') : ?>
 						<?php
 
 					// Проверка, был ли выполнен запрос на выход
@@ -98,7 +101,30 @@ include 'registration.php';
 
 					<?php endif; ?>
 
+					<?php if ($authorized == 'admin') : ?>
+						<?php
 
+					// Проверка, был ли выполнен запрос на выход
+					if (isset($_GET["logout"])) {
+						// Очистка всех сессионных данных
+						session_unset();
+
+						// Уничтожение сессии
+						session_destroy();
+
+						// Перенаправление на главную
+						header(('LOCATION: index.php'));
+						exit();
+					}
+					?>
+					<div class="gap-2 d-flex">
+						<a href="admin.php" class="btn btn-header">Панель</a>
+						<a href="?logout=true" class="btn btn-header">Выйти</a>
+					</div>
+
+					<?php endif; ?>
+
+					<?php echo $authorizedAdmin ?>
 				</div>
 			</div>
 		</nav>
@@ -767,7 +793,7 @@ include 'registration.php';
 
 
 	<!-- Блок для неавторизованного пользователя -->
-	<?php if (!$authorized) : ?>
+	<?php if ($authorized == 'none' || $authorized == 'admin') : ?>
 
 
 
@@ -809,7 +835,7 @@ include 'registration.php';
 	<?php endif; ?>
 
 	<!-- Блок для авторизованного пользователя -->
-	<?php if ($authorized) : ?>
+	<?php if ($authorized == 'user') : ?>
 
 		<zayavka class="zayavka">
 			<div class=" mb-5 pt-5">
