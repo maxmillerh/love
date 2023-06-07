@@ -65,6 +65,13 @@ color: var(--gray_2);
 	border-color: var(--orange);
 }
 
+.prof-otm{
+	background-color: white;
+	border: none;
+	width: 48%;
+
+}
+
 .menu-link:first {
 	margin-left: 0px;
 }
@@ -423,7 +430,7 @@ svg {
 	box-shadow: 0 4px 10px 0 RGB(0, 0, 0, 10%);
 }
 
-.otzivs img, .main-profile img {
+.otzivs img{
 	border-radius: 50%;
 	width: 50%;
 	margin-left: 25%;
@@ -728,4 +735,14 @@ header{
 .zapis p{
 	font-size: 20px;
 	line-height: 24px;
+}
+
+
+.profile-photo{
+	width: 70%; 
+	margin-left: 15%; 
+	margin-top: 0; 
+	margin-bottom: 22px;
+	cursor: pointer;
+	border-radius: 50%;
 }
