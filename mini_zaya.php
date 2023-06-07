@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Подключение к базе данных
 $dbHost = 'localhost';
 $dbUsername = 'root';
@@ -14,23 +15,31 @@ if (!$connection) {
 }
 
 // Обработка отправленной формы
-if (isset($_POST['submit'])) {
-	$name2 = $_POST["name2"];
-	$surname2 = $_POST["surname2"];
-	$tel2 = $_POST["tel2"];
-	$date2 = $_POST["date2"];
-	$time2 = $_POST["time2"];
-	$procedure2 = $_POST["procedure2"];
+if (isset($_POST['submit3'])) {
+
+	if (isset($_SESSION['name1']) && isset($_SESSION['surname1']) && isset($_SESSION['tel1'])) {
+    $name3 = $_SESSION['name1'];
+    $surname3 = $_SESSION['surname1'];
+    $tel3 = $_SESSION['tel1'];
+} else {
+    echo "НЕт сессии!!";
+}
+
+	$date3 = $_POST["date3"];
+	$time3 = $_POST["time3"];
+	$procedure3 = $_POST["procedure3"];
 
 	// Вставка данных в базу данных
 	$query = "INSERT INTO zaya (name, surname, tel, date, time, proc) 
-		VALUES ('$name2', '$surname2', '$tel2', '$date2', '$time2', '$procedure2')";
+		VALUES ('$name3', '$surname3', '$tel3', '$date3', '$time3', '$procedure3')";
 
 	if (mysqli_query($connection, $query)) {
 		$massage = "Форма отправлена";
+
 		
 	} else {
-		$error_massage = "Ошибка при отправке: " . mysqli_error($connection);
+		$massage = "Ошибка при отправке: " . mysqli_error($connection);
+
 	}
 }
 

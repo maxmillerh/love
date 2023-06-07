@@ -1,15 +1,96 @@
-<?php 
+<?php
+
+
 session_start();
+
+include 'mini_zaya.php';
 
 // Проверка, что пользователь авторизован
 if (isset($_SESSION['name1']) && isset($_SESSION['surname1']) && isset($_SESSION['tel1'])) {
-    $username = $_SESSION['name1'];
-		$usersurname = $_SESSION['surname1'];
-		$tel = $_SESSION['tel1'];
+	$username = $_SESSION['name1'];
+	$usersurname = $_SESSION['surname1'];
+	$tel = $_SESSION['tel1'];
+	$email = $_SESSION['email'];
+	$photo = $_SESSION['photo'];
 } else {
-    // Пользователь не авторизован, выполните соответствующие действия
-    echo "Вы не авторизованы!";
+	// Пользователь не авторизован, выполните соответствующие действия
+	echo "Вы не авторизованы!";
 }
+
+// Подключение к базе данных
+$servername = "localhost";
+$dbusername = "root";
+$dbpassword = "";
+$dbname = "love";
+
+$conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+$conn->set_charset('utf8');
+
+// Проверка, была ли отправлена форма с почтой
+if (isset($_POST['sandEmail'])) {
+
+	$email = $_POST["email"];
+
+	// Обновление записи в базе данных
+	$query = "UPDATE registr SET email = ? WHERE tel = ?";
+	$stmt = $conn->prepare($query);
+	$stmt->bind_param("ss", $email, $tel);
+	$stmt->execute();
+	// Проверка успешности выполнения запроса
+	if ($stmt->affected_rows > 0) {
+		// Почта успешно добавлена в базу данных
+		$_SESSION['email'] = $email;
+	} else {
+		// Произошла ошибка при добавлении почты
+		$message =  $conn->error;
+		echo $message;
+	}
+
+	if ($stmt->error) {
+		echo "Ошибка при выполнении запроса: " . $stmt->error;
+	}
+}
+$_SESSION['email'] = $email;
+
+
+//добавление фото в бд
+if (isset($_POST['btnSavePhoto'])) {
+
+	$photo = $_POST["photo"];
+
+	// Обновление записи в базе данных
+	$query = "UPDATE registr SET photo = ? WHERE tel = ?";
+	$stmt = $conn->prepare($query);
+	$stmt->bind_param("ss", $photo, $tel);
+	$stmt->execute();
+	// Проверка успешности выполнения запроса
+	if ($stmt->affected_rows > 0) {
+		// Почта успешно добавлена в базу данных
+		$_SESSION['photo'] = $photo;
+
+	} else {
+		// Произошла ошибка при добавлении почты
+		$message =  $conn->error;
+		echo $message;
+	}
+
+	if ($stmt->error) {
+		echo "Ошибка при выполнении запроса: " . $stmt->error;
+	}
+}
+$_SESSION['photo'] = $photo;
+
+
+
+
+// Запрос на выборку данных из базы данных для вывода записей
+$query = "SELECT * FROM zaya WHERE tel = ?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("s", $tel);
+$stmt->execute();
+$result = $stmt->get_result();
+
+
 
 
 ?>
@@ -77,7 +158,7 @@ if (isset($_SESSION['name1']) && isset($_SESSION['surname1']) && isset($_SESSION
 						session_destroy();
 
 						// Перенаправление на главную
-						header(('LOCATION: index.php'));
+						header('LOCATION: index.php');
 						exit();
 					}
 					?>
@@ -103,29 +184,75 @@ if (isset($_SESSION['name1']) && isset($_SESSION['surname1']) && isset($_SESSION
 	</div>
 
 	<div class="main-profile">
-		<div style="padding-left: 160px; padding-top: 40px; padding-bottom: 60px;" class="container pr-5 pl-5 d-flex justify-content-center">
-			<div class="row g-5">
-				<div class="prof col-4 p-4 element-animation">
-					<img src="img/otz3.png" style="width: 70%; margin-left: 15%; margin-top: 0; margin-bottom: 22px;" class="card-img-top" alt="">
-					<p style="text-align: center; color: rgb(41, 40, 40);"><?php echo $username, " ", $usersurname ?></p>
-					<p style="line-height: 30px;"><?php echo $tel ?></p>
-					<p class="prof-otm" style="line-height: 20px; font-size: 20px;">Добавить почту</p>
-					<p class="prof-otm" style="line-height: 20px; font-size: 20px;">Изменить пароль</p>
+		<div style="padding-left: 100px; padding-top: 40px; padding-bottom: 60px;" class="container pr-5 pl-5 d-flex ">
+			<div class="row g-5 w-100">
+				<div class="col-5  element-animation">
+					<div class="prof p-4">
+
+					<?php if (!empty($photo)) : ?>
+							<img data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-dismiss="modal" src="img/<?php echo $photo; ?>" class="card-img-top profile-photo" alt="Фото пользователя">
+						<?php else : ?>
+							<button style="width: 70%; height:292px; font-size:90px;" data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-dismiss="modal"  class="card-img-top profile-photo" >+</button>
+						<?php endif; ?>
+
+						
+						<p style="text-align: center; color: rgb(41, 40, 40); margin-bottom:5px;"><?php echo $username, " ", $usersurname ?></p>
+						<hr style="width: 60px; margin: 0px auto 30px auto;">
+						<p style="line-height: 30px;"><?php echo $tel ?></p>
+						<p id="email_p" style="line-height: 30px;"><?php echo $email ?></p>
+
+						<form id="content_mailAdd" class="content-mailAdd d-none mt-4" method="post" action="">
+							<input class="d-block" name="email" id="email" type="email" placeholder="Почта">
+							<button name='sandEmail' class="btn mb-4 " id="btnMailSave">Сохранить</button>
+							<button class="btn mb-4 " id="btnMailOtmena">Отмена</button>
+						</form>
+
+						<div class="block-btn-profile mt-4 mb-2">
+
+							<?php if (!$email) : ?>
+								<button id="mail_btn" class="prof-otm btn">Добавить почту</button>
+							<?php endif; ?>
+
+
+
+							<button class="prof-otm btn">Изменить пароль</button>
+						</div>
+
+
+					</div>
 				</div>
+
 				<div class="col-7 ml-5 element-animation">
 					<p>Ваши записи:</p>
-					<div class="prof zapis p-4 pl-5">
-						<p style="font-size: 26px; color: rgb(48, 47, 47); margin-bottom: 30px;">Наращивание ресниц</p>
-						<p>Процедура: классическое наращивание</p>
-						<p>09.03.2023</p>
-						<div class="d-flex justify-content-between mt-5">
-							<p style="font-size: 28px; color: rgb(85, 81, 81);">1200p</p>
-							<div>
-								<p class="prof-otm " style="float: left;">Изменить</p>
-								<p class="prof-otm" style="float: left; margin-left: 12px;">Отменить</p>
-							</div>
-						</div>
-					</div>
+
+					<?php
+
+					// Проверка наличия результатов
+					if ($result->num_rows > 0) {
+						// Вывод данных
+						while ($row = $result->fetch_assoc()) {
+
+							// Доступ к значениям полей записи
+							$date = $row['date'];
+							$time = $row['time'];
+							$proc = $row['proc'];
+
+							// Дальнейшая обработка данных...
+							echo "<div class='prof zapis p-4 pl-5 mt-4'>";
+							echo "<p style='font-size: 26px; color: rgb(48, 47, 47); margin-bottom: 30px;'>" . $proc . "</p>";
+							echo "<p>Дата: " . $date . "</p>";
+							echo "<p>Время: " . $time . "</p>";
+							echo "<div class='d-flex justify-content-between mt-5'>";
+							echo "<p style='font-size: 28px; color: rgb(85, 81, 81);'>1200p </p>";
+							echo "<button class='btn' id='btnMailOtmenaZaya'>Отменить запись</button>";
+							echo "</div>";
+							echo "</div>";
+						}
+					} else {
+						echo "Записи не найдены";
+					}
+
+					?>
 
 				</div>
 			</div>
@@ -133,23 +260,33 @@ if (isset($_SESSION['name1']) && isset($_SESSION['surname1']) && isset($_SESSION
 		</div>
 	</div>
 
-	<div class="shadow-blok mb-5" style="float: right; transform: rotate(180deg); width: 100%; "></div>
+	<div class="shadow-blok mb-5" style="float: right; transform: rotate(180deg); width: 100%; ">
+	</div>
 
 
 	<zayavka class="zayavka">
 		<div class=" mb-5 pt-5">
 			<div class="container">
-				<div id="zaya" class="help1">
+				<div id="zaya3" class="help1">
 					<h3 style="margin-top: 0px; margin-bottom: 40px;" class="title-design element-animation">Оставить заявку</h3>
 				</div>
 
 				<div class="row teni br-10 element-animation">
 
-					<div class="col-6 br-10 block-zaya ">
-						<input name="date" id="date" type="date" placeholder="Дата">
-						<input name="time" id="time" type="time" placeholder="Время">
-						<button class="btn btn-header d-block mt-4 btn-zaya">Записаться</button>
-					</div>
+					<form action="" class="col-6 br-10 block-zaya" method="post" name="zayavka3">
+						<input name="procedure3" id="procedure3" type="text" list="datalistOptions2" placeholder="Процедура" require>
+						<datalist id="datalistOptions2">
+							<option value="Наращивание классика">
+							<option value="Наращивание 2D">
+							<option value="Наращивание 3D">
+							<option value="Наращивание Y-эффект">
+							<option value="Снятие чужой работы">
+						</datalist>
+						<input name="date3" id="date3" type="date" placeholder="Дата" required>
+						<input name="time3" id="time3" type="time" placeholder="Время" required>
+						<button name="submit3" class="btn btn-header d-block mt-4 btn-zaya">Записаться</button>
+
+					</form>
 					<div class="col-6 br-10 z-img br-10 d-flex justify-content-center align-items-center">
 						<p>Красивой <br> быть просто</p>
 					</div>
@@ -193,67 +330,29 @@ if (isset($_SESSION['name1']) && isset($_SESSION['surname1']) && isset($_SESSION
 		<p class="copy ">©LUBOV 2023. Все права защищены</p>
 	</footer>
 
-
-
-
-	<!-- Modal-login -->
-	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<img src="img/login.png" alt="">
-
-			<div class="modal-content">
-				<div class="modal-header">
-					<h1 class="modal-title  " id="exampleModalLabel">Вход</h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					<!--<label id="name-lab" for="name">Имя</label> -->
-					<input name="tel" id="tel" type="tel" placeholder="Номер телефона">
-					<input name="pass" id="pass" type="password" placeholder="Пароль" pattern="2[0-9]{3}-[0-9]{3}" required>
-				</div>
-				<div class="modal-footer justify-content-between ">
-					<div class="">
-						<span>Нет аккаунта?</span>
-						<span class="reg-link" data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-dismiss="modal" aria-label="Close">Создать</span>
-					</div>
-					<button type="button" class="btn btn-header">Войти</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Modal-registr -->
+	<!-- Modal-save photo -->
 	<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
-		<div class="modal-dialog">
-			<img src="img/registr.png" alt="">
-
-			<div class="modal-content">
+		<div class="modal-dialog" style="max-width: 576px;">
+			<form action="" method="post" class="modal-content" name="savephoto">
 				<div class="modal-header">
-					<h1 class="modal-title  " id="exampleModalLabel">Создать аккаунт</h1>
+					<h1 class="modal-title" id="exampleModalLabel">Добавить фото</h1>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<!--<label id="name-lab" for="name">Имя</label> -->
-					<input name="name" id="name" type="text" placeholder="Имя">
-					<input name="surname" id="surname" type="text" placeholder="Фамилия">
-					<input name="tel" id="tel" type="tel" placeholder="Номер телефона">
-					<input name="pass" id="pass" type="password" placeholder="Пароль" pattern="2[0-9]{3}-[0-9]{3}" required>
+					<input type="file" name="photo" id="photo" require>
 				</div>
 				<div class="modal-footer justify-content-between ">
-					<div class="">
-						<span>Есть аккаунт?</span>
-						<span class="reg-link" data-bs-toggle="modal" data-bs-target="#exampleModal " data-bs-dismiss="modal" aria-label="Close">Войти</span>
-					</div>
-					<button type="button" class="btn btn-header">Создать</button>
+					<span></span>
+					<button name="btnSavePhoto" type="submit" class="btn btn-header">Сохранить</button>
 				</div>
-			</div>
+			</form>
 		</div>
 	</div>
 
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/app.js"></script>
+	<script src="js/profile.js"></script>
 </body>
 
 </html>

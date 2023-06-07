@@ -1,4 +1,8 @@
 <?php
+
+session_start();
+
+include 'mini_zaya.php';
 include 'zayavka.php';
 include 'login.php';
 include 'registration.php';
@@ -816,11 +820,21 @@ include 'registration.php';
 
 					<div class="row teni br-10 element-animation">
 
-						<div class="col-6 br-10 block-zaya ">
-							<input name="date" id="date" type="date" placeholder="Дата">
-							<input name="time" id="time" type="time" placeholder="Время">
-							<button class="btn btn-header d-block mt-4 btn-zaya">Записаться</button>
-						</div>
+					<form action="" class="col-6 br-10 block-zaya" method="post" name="zayavka3">
+						<input name="procedure3" id="procedure3" type="text" list="datalistOptions2" placeholder="Процедура" require>
+						<datalist id="datalistOptions2">
+							<option value="Наращивание классика">
+							<option value="Наращивание 2D">
+							<option value="Наращивание 3D">
+							<option value="Наращивание Y-эффект">
+							<option value="Снятие чужой работы">
+						</datalist>
+						<input name="date3" id="date3" type="date" placeholder="Дата" required>
+						<input name="time3" id="time3" type="time" placeholder="Время" required>
+						<button name="submit3" class="btn btn-header d-block mt-4 btn-zaya">Записаться</button>
+
+					</form>
+
 						<div class="col-6 br-10 z-img br-10 d-flex justify-content-center align-items-center">
 							<p>Красивой <br> быть просто</p>
 						</div>
