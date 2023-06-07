@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 // Подключение к базе данных
 $dbHost = 'localhost';
 $dbUsername = 'root';

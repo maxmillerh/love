@@ -1,9 +1,11 @@
 <?php
-
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 session_start();
 
 include 'mini_zaya.php';
+include 'delete_zaya.php';
 
 // Проверка, что пользователь авторизован
 if (isset($_SESSION['name1']) && isset($_SESSION['surname1']) && isset($_SESSION['tel1'])) {
@@ -52,7 +54,6 @@ if (isset($_POST['sandEmail'])) {
 }
 $_SESSION['email'] = $email;
 
-
 //добавление фото в бд
 if (isset($_POST['btnSavePhoto'])) {
 
@@ -67,7 +68,6 @@ if (isset($_POST['btnSavePhoto'])) {
 	if ($stmt->affected_rows > 0) {
 		// Почта успешно добавлена в базу данных
 		$_SESSION['photo'] = $photo;
-
 	} else {
 		// Произошла ошибка при добавлении почты
 		$message =  $conn->error;
@@ -80,19 +80,12 @@ if (isset($_POST['btnSavePhoto'])) {
 }
 $_SESSION['photo'] = $photo;
 
-
-
-
 // Запрос на выборку данных из базы данных для вывода записей
 $query = "SELECT * FROM zaya WHERE tel = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("s", $tel);
 $stmt->execute();
 $result = $stmt->get_result();
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -108,6 +101,35 @@ $result = $stmt->get_result();
 	<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poiret+One&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/style.css">
+
+	<script>
+	document.addEventListener('DOMContentLoaded', function() {
+  // Обработчик нажатия кнопки "Отменить запись"
+  var deleteButtons = document.getElementsByClassName('btn-delete');
+  for (var i = 0; i < deleteButtons.length; i++) {
+    deleteButtons[i].addEventListener('click', function() {
+      var recordId = this.getAttribute('data-record-id');
+      // Отправка запроса на сервер для удаления записи с использованием AJAX
+      var xhr = new XMLHttpRequest();
+			xhr.open('POST', 'delete_zaya.php', true);
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            // Обновление страницы или выполнение других действий при успешном удалении
+            location.reload(); // Обновление страницы
+          } else {
+            // Обработка ошибок при удалении записи
+            alert('Ошибка удаления записи');
+          }
+        }
+      };
+      var params = 'recordId=' + encodeURIComponent(recordId);
+      xhr.send(params);
+    });
+  }
+});
+	</script>
 
 </head>
 
@@ -147,7 +169,7 @@ $result = $stmt->get_result();
 					</ul>
 					<?php
 					// Запуск сессии
-					session_start();
+
 
 					// Проверка, был ли выполнен запрос на выход
 					if (isset($_GET["logout"])) {
@@ -189,13 +211,13 @@ $result = $stmt->get_result();
 				<div class="col-5  element-animation">
 					<div class="prof p-4">
 
-					<?php if (!empty($photo)) : ?>
+						<?php if (!empty($photo)) : ?>
 							<img data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-dismiss="modal" src="img/<?php echo $photo; ?>" class="card-img-top profile-photo" alt="Фото пользователя">
 						<?php else : ?>
-							<button style="width: 70%; height:292px; font-size:90px;" data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-dismiss="modal"  class="card-img-top profile-photo" >+</button>
+							<button style="width: 70%; height:292px; font-size:90px;" data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-dismiss="modal" class="card-img-top profile-photo">+</button>
 						<?php endif; ?>
 
-						
+
 						<p style="text-align: center; color: rgb(41, 40, 40); margin-bottom:5px;"><?php echo $username, " ", $usersurname ?></p>
 						<hr style="width: 60px; margin: 0px auto 30px auto;">
 						<p style="line-height: 30px;"><?php echo $tel ?></p>
@@ -226,7 +248,6 @@ $result = $stmt->get_result();
 					<p>Ваши записи:</p>
 
 					<?php
-
 					// Проверка наличия результатов
 					if ($result->num_rows > 0) {
 						// Вывод данных
@@ -236,6 +257,7 @@ $result = $stmt->get_result();
 							$date = $row['date'];
 							$time = $row['time'];
 							$proc = $row['proc'];
+							$record_id = $row['id']; // Добавлено: получаем идентификатор записи
 
 							// Дальнейшая обработка данных...
 							echo "<div class='prof zapis p-4 pl-5 mt-4'>";
@@ -244,14 +266,13 @@ $result = $stmt->get_result();
 							echo "<p>Время: " . $time . "</p>";
 							echo "<div class='d-flex justify-content-between mt-5'>";
 							echo "<p style='font-size: 28px; color: rgb(85, 81, 81);'>1200p </p>";
-							echo "<button class='btn' id='btnMailOtmenaZaya'>Отменить запись</button>";
+							echo "<button class='btn btn-delete' data-record-id='$record_id'>Отменить запись</button>"; // Добавлено: атрибут с идентификатором записи
 							echo "</div>";
 							echo "</div>";
 						}
 					} else {
-						echo "Записи не найдены";
+						echo  "<p style='font-size:30px;'>У вас пока нет записей <a class='btn' href='#zaya3'>Записаться?</a></p>";
 					}
-
 					?>
 
 				</div>
