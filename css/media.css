@@ -1,0 +1,719 @@
+/* адаптив для экранов до 1400 пикселей */
+@media (max-width: 1400px) {
+
+
+	.main-img {
+		width: 480px;
+		position: absolute;
+		bottom: 0;
+		left: 640px;
+		display: block;
+	}
+
+	.main-img img {
+		width: 100%;
+		z-index: 1;
+	}
+
+	.p-rec {
+		padding: 0px 0px 40px 0px;
+	}
+
+	.serf {
+		height: 376px;
+
+	}
+
+	.cont {
+		font-size: 28px;
+		line-height: 40px;
+
+	}
+
+}
+
+
+/* адаптив для экранов до 1200 пикселей */
+@media (max-width: 1200px) {
+
+	.z-img p {
+		font-size: 45px;
+		line-height: 80px;
+
+	}
+
+	main {
+		margin-top: 60px;
+	}
+
+	.main {
+		display: flex;
+		justify-content: space-between;
+		position: relative;
+	}
+
+	h1 {
+		font-size: 54px;
+	}
+
+	.main h2 {
+		font-size: 28px;
+		line-height: 40px;
+	}
+
+	.facts {
+		margin-top: 80px;
+		margin-bottom: 30px;
+	}
+
+
+	.fact {
+		margin-left: 60px;
+		margin-bottom: 48px;
+
+	}
+
+	.fact1 {
+		margin-left: 0px;
+	}
+
+	.fact span {
+		font-size: 52px;
+		line-height: 52px;
+	}
+
+	.fact p {
+		font-size: 18px;
+	}
+
+	.btn-main {
+
+		padding: 10px 40px;
+		font-size: 20px;
+		margin-top: 30px;
+	}
+
+	.main-img {
+		width: 400px;
+		position: absolute;
+		bottom: 0;
+		left: 520px;
+
+		display: block;
+	}
+
+	.main-img img {
+		width: 100%;
+		z-index: 1;
+	}
+
+	.menu-recomend {
+
+		margin-bottom: 40px;
+	}
+
+	.menu-recomend li {
+		font-size: 18px;
+		background-color: white;
+		padding: 4px 12px;
+
+	}
+
+	h3 {
+		font-size: 40px;
+		margin-top: 40px;
+		margin-bottom: 35px;
+		margin-top: 20px;
+	}
+
+	.title-design::after {
+		top: 28px;
+		left: 7px;
+
+	}
+
+	h4 {
+		font-size: 28px;
+		padding-top: 0px;
+		margin-top: 0;
+
+	}
+
+	.card-title {
+		font-size: 26px;
+		margin-top: 12px;
+		margin-bottom: 20px;
+	}
+
+	.card-text {
+		line-height: 28px;
+		font-size: 28px;
+
+	}
+
+	.mb-4 {
+		margin-bottom: 15px;
+	}
+
+	.card .btn {
+		padding: 6px 14px;
+		font-size: 18px;
+
+	}
+
+	.card-body {
+		padding-bottom: 26px;
+	}
+
+	.item-img {
+		width: 100px;
+	}
+
+	.item-rec-line::before {
+		top: 50px;
+	}
+
+	.rec-text {
+		font-size: 20px;
+		margin-left: 15px;
+	}
+
+	.recomend {
+		margin-bottom: 30px;
+	}
+
+	.p-rec {
+		padding: 0px 0px 20px 0px;
+	}
+
+	.serf {
+		height: 312px;
+	}
+
+	.name {
+		font-size: 18px;
+		line-height: 36px;
+	}
+
+	.otzText {
+		font-size: 16px;
+		line-height: 20px;
+	}
+
+	.h3-spec {
+		margin-top: 60px;
+	}
+
+	.cont {
+		font-size: 22px;
+		line-height: 22px;
+	}
+
+	.cont-sup {
+		font-size: 16px;
+		margin-bottom: 32px;
+		line-height: 38px;
+
+	}
+
+	.map {
+		height: 400px;
+	}
+
+	.contact {
+		padding-bottom: 0px;
+	}
+
+	.block-zaya {
+		padding: 28px 31px;
+	}
+
+	.zayavka input {
+		margin-bottom: 16px;
+	}
+
+	.zayavka input::placeholder {
+		font-size: 18px;
+	}
+
+	input {
+		border: none;
+		border-bottom: 1px solid #ebebeb;
+		width: 70%;
+		font-size: 18px;
+		padding-bottom: 3px;
+	}
+
+	.footer .menu-link,
+	.header .menu-link {
+		margin-left: 18px;
+	}
+
+	.menu-link {
+		font-size: 18px;
+
+	}
+
+	.navbar-expand-lg .navbar-nav .nav-link {
+		padding-right: 0;
+		padding-left: 0;
+	}
+
+	.btn-zaya {
+		padding: 6px 28px;
+	}
+
+
+}
+
+/* адаптив для экранов до 992 пикселей */
+@media (max-width: 992px) {
+
+
+	.soc-main {
+		display: none;
+	}
+
+
+	main {
+		margin-top: 40px;
+	}
+
+	.main {
+		display: flex;
+		justify-content: space-between;
+		position: relative;
+	}
+
+	.header .menu-link {
+		border-bottom: solid 1px #ebebeb;
+	}
+
+
+	.btn-header {
+		font-size: 18px;
+		padding: 6px 40px;
+		margin-left: 18px;
+		margin-bottom: 25px;
+		margin-top: 20px;
+	}
+
+	.hamburger {
+		font-size: 30px;
+		color: var(--gray_4);
+		font-weight: 300;
+	}
+
+	.navbar-toggler:focus {
+		text-decoration: none;
+		outline: 0;
+		box-shadow: none;
+		transform: rotate(90deg);
+	}
+
+	h1 {
+		font-size: 40px;
+	}
+
+	.main h2 {
+		font-size: 22px;
+		line-height: 36px;
+	}
+
+	.facts {
+		margin-top: 60px;
+		margin-bottom: 30px;
+	}
+
+
+	.fact {
+		margin-left: 30px;
+		margin-bottom: 30px;
+
+	}
+
+	.fact1 {
+		margin-left: 0px;
+	}
+
+	.fact span {
+		font-size: 40px;
+		line-height: 40px;
+	}
+
+	.fact p {
+		font-size: 16px;
+	}
+
+	.btn-main {
+
+		padding: 10px 40px;
+		font-size: 20px;
+		margin-top: 30px;
+	}
+
+	.main-img {
+		width: 320px;
+		position: absolute;
+		bottom: 0;
+		left: auto;
+		right: -30px;
+
+		display: block;
+	}
+
+	.main-img img {
+		width: 100%;
+		z-index: 1;
+		opacity: 0.7;
+	}
+
+	.uslugs .row>* {
+		padding-right: 5px;
+		padding-left: 5px;
+		margin-top: 10px;
+	}
+
+	.card-body {
+		padding: 8px;
+	}
+
+	.card-title {
+		font-size: 20px;
+		margin-top: 10px;
+		margin-left: 10px;
+		margin-bottom: 0px;
+	}
+
+	.card-text {
+		line-height: 18px;
+		font-size: 18px;
+		margin-left: 10px;
+	}
+
+	.btn-header {
+		font-size: 18px;
+		padding: 6px 40px;
+		margin-left: 8px;
+		margin-bottom: 8px;
+		margin-top: 13px;
+	}
+
+	.card .btn {
+		padding: 3px 14px;
+		font-size: 16px;
+	}
+
+	.h3-spec {
+		margin-top: 40px;
+	}
+
+	.serf {
+		height: 230px;
+	}
+
+	.name {
+		font-size: 24px;
+		line-height: 50px;
+	}
+
+	.otzText {
+		font-size: 20px;
+		line-height: 26px;
+	}
+
+	.z-img p {
+		font-size: 35px;
+		line-height: 50px;
+
+	}
+
+
+	.block-zaya {
+		padding: 20px 20px;
+	}
+
+	.footer {
+
+		padding: 15px 0;
+
+	}
+
+	.footer .logo {
+
+		font-size: 20px;
+
+	}
+
+	.footer .menu-link {
+		margin-left: 10px;
+	}
+
+	.menu-link {
+		font-size: 16px;
+	}
+
+	.socseti img {
+		width: 30px;
+		margin-left: 10px;
+	}
+
+	.copy {
+		line-height: 16px;
+		font-size: 16px;
+
+	}
+
+}
+
+@media (max-width: 768px) {
+
+	.menu-recomend li {
+		font-size: 14px;
+		padding: 4px 10px;
+	}
+
+	.header {
+		margin-top: 0px;
+	}
+
+	.main-img {
+		width: 268px;
+		right: -30px;
+	}
+
+	.main-img img {
+		width: 100%;
+		z-index: 1;
+		opacity: 0.14;
+	}
+
+	.card-body {
+		padding: 6px;
+	}
+
+	.card-title {
+		font-size: 14px;
+		margin-top: 8px;
+		margin-left: 8px;
+		margin-bottom: 0px;
+	}
+
+	.card-text {
+		line-height: 16px;
+		font-size: 12px;
+		margin-left: 10px;
+	}
+
+	.card .btn {
+		padding: 2px 12px;
+		font-size: 12px;
+	}
+
+	h4 {
+		font-size: 22px;
+	}
+
+	.item-img {
+		width: 70px;
+	}
+
+	.item-rec-line::before {
+		top: 35px;
+	}
+
+	.rec-text {
+		font-size: 16px;
+		margin-left: 10px;
+	}
+
+	.p-rec {
+		padding: 0px 0px 0px 0px;
+	}
+
+	.logo {
+		font-size: 24px;
+	}
+
+	.sertificatss {
+		display: none;
+	}
+
+	.sertificatss2 {
+		display: block;
+	}
+
+	.serf {
+		height: auto;
+		width: 95%;
+	}
+
+	.z-img {
+		display: none;
+	}
+
+	.block-zaya {
+		padding: 45px 35px;
+		border-radius: 10px;
+		box-shadow: 5px 0 4px 0 rgba(0, 0, 0, 10%);
+	}
+
+	.menu-link {
+		font-size: 14px;
+	}
+
+}
+
+@media (max-width: 576px) {
+
+	.footer ul {
+		flex-direction: column;
+	}
+
+	.potom {
+		align-items: start;
+	}
+
+	h1 {
+		font-size: 36px;
+	}
+
+	.menu-link {
+		font-size: 18px;
+	}
+
+	.main h2 {
+		font-size: 20px;
+		line-height: 31px;
+		margin-top: 26px;
+	}
+
+	.main-img {
+		display: none;
+	}
+
+	.fact span {
+		font-size: 34px;
+		line-height: 34px;
+	}
+
+	.facts {
+		margin-top: 40px;
+		margin-bottom: 20px;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.fact {
+		margin-left: 0px;
+		margin-bottom: 0px;
+	}
+
+	.fact p {
+		font-size: 15px;
+		line-height: 40px;
+	}
+
+	h3 {
+		font-size: 40px;
+		margin-top: 40px;
+		margin-bottom: 20px;
+		margin-top: 0px;
+	}
+
+	.menu-recomend li {
+		font-size: 12px;
+		padding: 4px 8px;
+		margin-left: 6px;
+	}
+
+	.menu-recomend {
+		margin-bottom: 8px;
+		margin-top: 0px;
+	}
+
+	.card-title {
+		font-size: 16px;
+
+	}
+
+	.card-text {
+		line-height: 16px;
+		font-size: 16px;
+	}
+
+	.card .btn {
+		padding: 3px 13px;
+		font-size: 12px;
+
+	}
+
+	.h3-spec {
+		margin-top: 0px;
+	}
+
+	.menu-recomend {
+		margin-bottom: 21px;
+		margin-top: 0px;
+	}
+
+	.item-img {
+		width: 56px;
+	}
+
+	.item-rec-line::before {
+		top: 28px;
+	}
+
+	.block-zaya {
+		padding: 20px 20px;
+		border-radius: 10px;
+		margin-top: 0 8px;
+	}
+
+	.zayavka .row {
+
+		margin-right:0 ;
+		margin-left: 0;
+	}
+
+	.modal-dialog img {
+   display: none;
+}
+
+input {
+	border: none;
+	border-bottom: 1px solid #ebebeb;
+	width: 100%;
+	font-size: 20px;
+	padding-bottom: 4px;
+}
+
+.modal-body {
+	padding-left: 1.5rem;
+	padding-top: 1.5rem;
+}
+
+.oxxx {
+	padding-left: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+.w100prof{
+	width: auto;
+	margin-left: 0px;
+}
+
+
+
+.element-animation {
+	opacity: 0;
+	transform: translateY(30px);
+}
+
+.mb-10{
+margin-bottom: 20px;
+}
+
+}

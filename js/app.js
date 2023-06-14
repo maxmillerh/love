@@ -114,32 +114,38 @@ permonentnyi_usluga.onclick = function(){
 
   var btnclass = document.getElementById('btnUslNarClass');
   btnclass.onclick = function() {
-    document.getElementById("procedure2").value = "Наращивание классика";
+    document.getElementById("procedure2").selectedIndex = 1;
+		document.getElementById("procedure3").selectedIndex = 1;
   }
 
 	var btn2D = document.getElementById('btnUslNar2D');
   btn2D.onclick = function() {
-    document.getElementById("procedure2").value = "Наращивание 2D";
+    document.getElementById("procedure2").selectedIndex = 2;
+		document.getElementById("procedure3").selectedIndex = 2;
   }
 
 	var btn3D = document.getElementById('btnUslNar3D');
   btn3D.onclick = function() {
-    document.getElementById("procedure2").value = "Наращивание 3D";
+    document.getElementById("procedure2").selectedIndex = 3;
+		document.getElementById("procedure3").selectedIndex = 3;
   }
 
 	var btn4D = document.getElementById('btnUslNar4D');
   btn4D.onclick = function() {
-    document.getElementById("procedure2").value = "Наращивание 4D";
+    document.getElementById("procedure2").selectedIndex = 4;
+		document.getElementById("procedure3").selectedIndex = 4;
   }
 
 	var btnY = document.getElementById('btnUslNarY');
   btnY.onclick = function() {
-    document.getElementById("procedure2").value = "Наращивание Y-эффект";
+    document.getElementById("procedure2").selectedIndex = 5;
+		document.getElementById("procedure3").selectedIndex = 5;
   }
 
 	var btnSnyat = document.getElementById('btnUslNarSnyat');
   btnSnyat.onclick = function() {
-    document.getElementById("procedure2").value = "Снятие чужой работы";
+    document.getElementById("procedure2").selectedIndex = 6;
+		document.getElementById("procedure3").selectedIndex = 6;
   }
 
 	var btnUs = document.getElementById('btnUslShugUs');
@@ -228,5 +234,11 @@ permonentnyi_usluga.onclick = function(){
   }
 
 
+	$(function(){
+		$("#tel2").mask("+7(999) 999-99-99", {placeholder: "+7(XXX) XXX-XX-XX" });
+		$("#tel").mask("+7(999) 999-99-99", {placeholder: "+7(XXX) XXX-XX-XX" });
+		$("#tel1").mask("+7(999) 999-99-99", {placeholder: "+7(XXX) XXX-XX-XX" });
+	});
 
-	let arrProc = []
+
+	

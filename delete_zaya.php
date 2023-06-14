@@ -11,13 +11,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = "";
     $dbname = "love";
     // Создание подключения
-    $conn = new mysqli($servername, $username, $password, $dbname);
+    $connection = new mysqli($servername, $username, $password, $dbname);
+		$connection->set_charset('utf8');
     // Проверка соединения
-    if ($conn->connect_error) {
-      die("Ошибка подключения к базе данных: " . $conn->connect_error);
+    if ($connection->connect_error) {
+      die("Ошибка подключения к базе данных: " . $connection->connect_error);
     }
     // Подготовленное выражение для удаления записи
-    $stmt = $conn->prepare("DELETE FROM zaya WHERE id = ?");
+    $stmt = $connection->prepare("DELETE FROM zaya WHERE id = ?");
     $stmt->bind_param("i", $recordId); // "i" указывает на тип данных идентификатора (integer)
     // Выполнение подготовленного выражения
     if ($stmt->execute()) {
@@ -29,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Закрытие подготовленного выражения
     $stmt->close();
     // Закрытие соединения
-    $conn->close();
+    $connection->close();
   } else {
     $message = "Идентификатор записи не найден";
   }

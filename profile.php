@@ -6,6 +6,7 @@ session_start();
 
 include 'mini_zaya.php';
 include 'delete_zaya.php';
+include 'get_times.php';
 
 // Проверка, что пользователь авторизован
 if (isset($_SESSION['name1']) && isset($_SESSION['surname1']) && isset($_SESSION['tel1'])) {
@@ -25,8 +26,8 @@ $dbusername = "root";
 $dbpassword = "";
 $dbname = "love";
 
-$conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
-$conn->set_charset('utf8');
+$connection = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+$connection->set_charset('utf8');
 
 // Проверка, была ли отправлена форма с почтой
 if (isset($_POST['sandEmail'])) {
@@ -35,7 +36,7 @@ if (isset($_POST['sandEmail'])) {
 
 	// Обновление записи в базе данных
 	$query = "UPDATE registr SET email = ? WHERE tel = ?";
-	$stmt = $conn->prepare($query);
+	$stmt = $connection->prepare($query);
 	$stmt->bind_param("ss", $email, $tel);
 	$stmt->execute();
 	// Проверка успешности выполнения запроса
@@ -44,7 +45,7 @@ if (isset($_POST['sandEmail'])) {
 		$_SESSION['email'] = $email;
 	} else {
 		// Произошла ошибка при добавлении почты
-		$message =  $conn->error;
+		$message =  $connection->error;
 		echo $message;
 	}
 
@@ -61,7 +62,7 @@ if (isset($_POST['btnSavePhoto'])) {
 
 	// Обновление записи в базе данных
 	$query = "UPDATE registr SET photo = ? WHERE tel = ?";
-	$stmt = $conn->prepare($query);
+	$stmt = $connection->prepare($query);
 	$stmt->bind_param("ss", $photo, $tel);
 	$stmt->execute();
 	// Проверка успешности выполнения запроса
@@ -70,7 +71,7 @@ if (isset($_POST['btnSavePhoto'])) {
 		$_SESSION['photo'] = $photo;
 	} else {
 		// Произошла ошибка при добавлении почты
-		$message =  $conn->error;
+		$message =  $connection->error;
 		echo $message;
 	}
 
@@ -82,7 +83,7 @@ $_SESSION['photo'] = $photo;
 
 // Запрос на выборку данных из базы данных для вывода записей
 $query = "SELECT * FROM zaya WHERE tel = ?";
-$stmt = $conn->prepare($query);
+$stmt = $connection->prepare($query);
 $stmt->bind_param("s", $tel);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -101,34 +102,35 @@ $result = $stmt->get_result();
 	<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poiret+One&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/media.css">
 
 	<script>
-	document.addEventListener('DOMContentLoaded', function() {
-  // Обработчик нажатия кнопки "Отменить запись"
-  var deleteButtons = document.getElementsByClassName('btn-delete');
-  for (var i = 0; i < deleteButtons.length; i++) {
-    deleteButtons[i].addEventListener('click', function() {
-      var recordId = this.getAttribute('data-record-id');
-      // Отправка запроса на сервер для удаления записи с использованием AJAX
-      var xhr = new XMLHttpRequest();
-			xhr.open('POST', 'delete_zaya.php', true);
-      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-      xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4) {
-          if (xhr.status === 200) {
-            // Обновление страницы или выполнение других действий при успешном удалении
-            location.reload(); // Обновление страницы
-          } else {
-            // Обработка ошибок при удалении записи
-            alert('Ошибка удаления записи');
-          }
-        }
-      };
-      var params = 'recordId=' + encodeURIComponent(recordId);
-      xhr.send(params);
-    });
-  }
-});
+		document.addEventListener('DOMContentLoaded', function() {
+			// Обработчик нажатия кнопки "Отменить запись"
+			var deleteButtons = document.getElementsByClassName('btn-delete');
+			for (var i = 0; i < deleteButtons.length; i++) {
+				deleteButtons[i].addEventListener('click', function() {
+					var recordId = this.getAttribute('data-record-id');
+					// Отправка запроса на сервер для удаления записи с использованием AJAX
+					var xhr = new XMLHttpRequest();
+					xhr.open('POST', 'delete_zaya.php', true);
+					xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+					xhr.onreadystatechange = function() {
+						if (xhr.readyState === 4) {
+							if (xhr.status === 200) {
+								// Обновление страницы или выполнение других действий при успешном удалении
+								location.reload(); // Обновление страницы
+							} else {
+								// Обработка ошибок при удалении записи
+								alert('Ошибка удаления записи');
+							}
+						}
+					};
+					var params = 'recordId=' + encodeURIComponent(recordId);
+					xhr.send(params);
+				});
+			}
+		});
 	</script>
 
 </head>
@@ -142,8 +144,8 @@ $result = $stmt->get_result();
 
 				<a class="navbar-brand logo" href="index.php">Lubov</a>
 
-				<button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"><img src="img/burger.png" width="30px" height="30px" alt=""></span>
+				<button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="hamburger">&#9776</span>
 				</button>
 
 				<div class="collapse navbar-collapse justify-content-between toc js-toc" id="navbarSupportedContent">
@@ -168,17 +170,12 @@ $result = $stmt->get_result();
 						</li>
 					</ul>
 					<?php
-					// Запуск сессии
-
-
 					// Проверка, был ли выполнен запрос на выход
 					if (isset($_GET["logout"])) {
 						// Очистка всех сессионных данных
 						session_unset();
-
 						// Уничтожение сессии
 						session_destroy();
-
 						// Перенаправление на главную
 						header('LOCATION: index.php');
 						exit();
@@ -192,7 +189,7 @@ $result = $stmt->get_result();
 		</nav>
 	</header>
 	<div class="container">
-		<div class="shadow-blok mb-5" style="float: right; transform: rotate(180deg); width: 100%; "></div>
+		<div class="shadow-blok mb-md-5 mb-4" style="float: right; transform: rotate(180deg); width: 100%; "></div>
 
 	</div>
 	<!-- header-end -->
@@ -206,9 +203,9 @@ $result = $stmt->get_result();
 	</div>
 
 	<div class="main-profile">
-		<div style="padding-left: 100px; padding-top: 40px; padding-bottom: 60px;" class="container pr-5 pl-5 d-flex ">
-			<div class="row g-5 w-100">
-				<div class="col-5  element-animation">
+		<div class="container pr-md-5 pl-md-5 d-flex oxxx ">
+			<div class="row g-md-5 w100prof">
+				<div class="col-12 col-md-5 element-animation mb-10">
 					<div class="prof p-4">
 
 						<?php if (!empty($photo)) : ?>
@@ -224,7 +221,7 @@ $result = $stmt->get_result();
 						<p id="email_p" style="line-height: 30px;"><?php echo $email ?></p>
 
 						<form id="content_mailAdd" class="content-mailAdd d-none mt-4" method="post" action="">
-							<input class="d-block" name="email" id="email" type="email" placeholder="Почта">
+							<input class="d-block" name="email" id="email" type="email" placeholder="Почта" required>
 							<button name='sandEmail' class="btn mb-4 " id="btnMailSave">Сохранить</button>
 							<button class="btn mb-4 " id="btnMailOtmena">Отмена</button>
 						</form>
@@ -244,7 +241,7 @@ $result = $stmt->get_result();
 					</div>
 				</div>
 
-				<div class="col-7 ml-5 element-animation">
+				<div class="col-12 col-md-7 ml-5 element-animation  mb-10">
 					<p>Ваши записи:</p>
 
 					<?php
@@ -257,15 +254,16 @@ $result = $stmt->get_result();
 							$date = $row['date'];
 							$time = $row['time'];
 							$proc = $row['proc'];
+							$price = $row['price'];
 							$record_id = $row['id']; // Добавлено: получаем идентификатор записи
 
 							// Дальнейшая обработка данных...
 							echo "<div class='prof zapis p-4 pl-5 mt-4'>";
 							echo "<p style='font-size: 26px; color: rgb(48, 47, 47); margin-bottom: 30px;'>" . $proc . "</p>";
-							echo "<p>Дата: " . $date . "</p>";
-							echo "<p>Время: " . $time . "</p>";
+							echo "<p>Дата: " . date("d.m", strtotime($date)) . "</p>";
+							echo "<p>Время: " . date("H:i", strtotime($time)) .  "</p>";
 							echo "<div class='d-flex justify-content-between mt-5'>";
-							echo "<p style='font-size: 28px; color: rgb(85, 81, 81);'>1200p </p>";
+							echo "<p style='font-size: 28px; color: rgb(85, 81, 81);'>" . $price . "р </p>";
 							echo "<button class='btn btn-delete' data-record-id='$record_id'>Отменить запись</button>"; // Добавлено: атрибут с идентификатором записи
 							echo "</div>";
 							echo "</div>";
@@ -294,22 +292,71 @@ $result = $stmt->get_result();
 
 				<div class="row teni br-10 element-animation">
 
-					<form action="" class="col-6 br-10 block-zaya" method="post" name="zayavka3">
-						<input name="procedure3" id="procedure3" type="text" list="datalistOptions2" placeholder="Процедура" require>
-						<datalist id="datalistOptions2">
-							<option value="Наращивание классика">
-							<option value="Наращивание 2D">
-							<option value="Наращивание 3D">
-							<option value="Наращивание Y-эффект">
-							<option value="Снятие чужой работы">
-						</datalist>
-						<input name="date3" id="date3" type="date" placeholder="Дата" required>
-						<input name="time3" id="time3" type="time" placeholder="Время" required>
+					<form action="" class="col-12 col-md-6 br-10 block-zaya" method="post" name="zayavka3">
+						<select name="procedure3" id="procedure3" required>
+							<option value="" disabled selected>Выберите процедуру</option>
+							<option value="Классика">Наращивание Классика</option>
+							<option value="2D эффект">Наращивание 2D эффект</option>
+							<option value="3D эффект">Наращивание 3D эффект</option>
+							<option value="4D эффект">Наращивание 4D эффект</option>
+							<option value="Y эффект">Наращивание Y эффект</option>
+							<option value="Снятие чужой работы">Наращивание Снятие чужой работы</option>
+						</select>
+
+						<select name="date3" id="date3" required>
+							<option value="" disabled selected>Выберите дату</option>
+							<?php
+							$dateQuery = "SELECT DISTINCT date FROM time";
+							$dateResult = mysqli_query($connection, $dateQuery);
+
+							while ($row = mysqli_fetch_assoc($dateResult)) {
+								$date = $row['date'];
+								echo "<option value='$date'>" . date("d.m", strtotime($date)) . "</option>";
+							}
+							?>
+
+						</select>
+
+						<select name="time3" id="time3" required>
+							<option value="" disabled selected>Выберите время</option>
+						</select>
+
 						<button name="submit3" class="btn btn-header d-block mt-4 btn-zaya">Записаться</button>
 
+						<script>
+							document.getElementById('date3').addEventListener('change', function() {
+								var selectedDate = this.value;
+								var timeSelect = document.getElementById('time3');
+								timeSelect.innerHTML = '<option value="" disabled selected>Выберите время</option>';
+
+								// Запрос на сервер для получения времени на основе выбранной даты
+								var xhr = new XMLHttpRequest();
+								xhr.onreadystatechange = function() {
+									if (xhr.readyState === XMLHttpRequest.DONE) {
+										if (xhr.status === 200) {
+											var times = JSON.parse(xhr.responseText);
+											times.forEach(function(time) {
+												var option = document.createElement('option');
+												option.value = time;
+												option.text = time;
+												timeSelect.appendChild(option);
+											});
+										} else {
+											console.log('Ошибка: ' + xhr.status);
+										}
+									}
+								};
+								xhr.open('GET', 'get_times.php?date=' + selectedDate, true);
+								xhr.send();
+							});
+						</script>
+
+
 					</form>
-					<div class="col-6 br-10 z-img br-10 d-flex justify-content-center align-items-center">
-						<p>Красивой <br> быть просто</p>
+
+
+					<div class=" col-md-6 br-10 z-img br-10 justify-content-center align-items-center">
+						<p>Красивой быть <br> просто</p>
 					</div>
 				</div>
 			</div>
@@ -317,7 +364,7 @@ $result = $stmt->get_result();
 	</zayavka>
 
 	<footer class="footer">
-		<div class="container d-flex justify-content-between align-items-center ">
+		<div class="container d-flex justify-content-between potom ">
 			<a class="navbar-brand logo" href="index.php">Lubov</a>
 
 			<ul class="navbar-nav  spec-position ">
@@ -360,7 +407,7 @@ $result = $stmt->get_result();
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<input type="file" name="photo" id="photo" require>
+					<input type="file" name="photo" id="photo" required>
 				</div>
 				<div class="modal-footer justify-content-between ">
 					<span></span>

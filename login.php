@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 
 // Проверка, была ли отправлена форма авторизации
 if (isset($_POST["send1"])) {
@@ -13,20 +13,20 @@ if (isset($_POST["send1"])) {
 	$dbpassword = "";
 	$dbname = "love";
 
-	$conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
-	$conn->query("SET_NAME * 'UTF8'");
+	$connection = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+	$connection->set_charset('utf8');
 
 	// Проверка соединения с базой данных
-	if ($conn->connect_error) {
-		die("Ошибка соединения: " . $conn->connect_error);
+	if ($connection->connect_error) {
+		die("Ошибка соединения: " . $connection->connect_error);
 	}
 
 	// Поиск пользователя в базе данных
 	$select_user_sql = "SELECT * FROM registr WHERE tel = '$tel1'";
-	$select_user_result = $conn->query($select_user_sql);
+	$select_user_result = $connection->query($select_user_sql);
 
 	if ($select_user_result->num_rows == 1) {
-		if($tel1 != '8(900) 533-28-08'){
+		if($tel1 != '+7(900) 533-28-08'){
 			$user = $select_user_result->fetch_assoc();
 			$name1 = $user["name"]; // Получение имени пользователя из базы данных
 			$_SESSION['name1'] = $name1; // Сохранение имени пользователя в сессии
@@ -65,5 +65,5 @@ if (isset($_POST["send1"])) {
 		$error_massage = "Пользователь не найден";
 	}
 
-	$conn->close();
+	$connection->close();
 }

@@ -4,10 +4,11 @@
 	--gray_3: #767676;
 	--gray_4: #756C6C;
 	--gray_5: #323232;
-	--orange: #FFB178;
+	--orange: #ff7410;
 	--white: #ffffff;
 	--font1: 'Poiret One', cursive;
 	--font2: 'Pacifico', cursive;
+	/* 	prev #FFB178 */
 }
 
 body {
@@ -49,8 +50,8 @@ body {
 	margin-left: 10px;
 }
 
-.bok-soc{
-color: var(--gray_2);
+.bok-soc {
+	color: var(--gray_2);
 }
 
 .menu-link:hover,
@@ -65,7 +66,7 @@ color: var(--gray_2);
 	border-color: var(--orange);
 }
 
-.prof-otm{
+.prof-otm {
 	background-color: white;
 	border: none;
 	width: 48%;
@@ -164,11 +165,11 @@ h1 {
 
 
 .soc-main {
-	
+
 	transform: rotate(270deg);
 	display: flex;
 	align-items: center;
-	position: absolute;	
+	position: absolute;
 	right: -195px;
 	top: 150px;
 	color: var(--gray_4);
@@ -229,7 +230,7 @@ h3 {
 	position: absolute;
 	height: 20px;
 	background-color: var(--orange);
-	opacity: 20%;
+	opacity: 10%;
 	width: 100%;
 	top: 44px;
 	left: 16px;
@@ -381,7 +382,7 @@ svg {
 	top: -30px;
 } */
 
-.a-soc{
+.a-soc {
 	text-decoration: none;
 }
 
@@ -430,7 +431,7 @@ svg {
 	box-shadow: 0 4px 10px 0 RGB(0, 0, 0, 10%);
 }
 
-.otzivs img{
+.otzivs img {
 	border-radius: 50%;
 	width: 50%;
 	margin-left: 25%;
@@ -501,7 +502,7 @@ svg {
 	cursor: pointer;
 } */
 
-input {
+input, select {
 	border: none;
 	border-bottom: 1px solid var(--gray_2);
 	width: 70%;
@@ -514,7 +515,7 @@ input {
 
 
 
-input:focus {
+input:focus, select:focus{
 	border: none;
 	border-bottom: 1px solid var(--gray_2);
 	outline: none;
@@ -576,7 +577,8 @@ input:focus {
 	box-shadow: -16px 0 16px 0 rgba(0, 0, 0, 38%);
 
 }
-.br-10{
+
+.br-10 {
 	border-radius: 10px;
 }
 
@@ -592,9 +594,8 @@ input:focus {
 	box-shadow: 0 4px 10px 0 RGB(0, 0, 0, 10%);
 }
 
-.zayavka input {
+.zayavka input, .zayavka select {
 	width: 100%;
-	margin-bottom: 30px;
 }
 
 .btn-zaya {
@@ -603,61 +604,60 @@ input:focus {
 
 .z-img {
 	background-image: url("../img/zayavka.jpg");
-	filter: grayscale(30%);
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
 	border-radius: 0 10px 10px 0;
-	color: white;
-	font-size: 60px;
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-weight: 600;
-	
-	text-shadow: 0 0 6px 2px  black;
+	display: flex;
+
 
 }
 
-.z-img p{
-
-	text-shadow: 0 0 6px 2px  black;
+.z-img p {
+	text-shadow: 0 0 5px rgb(0, 0, 0);
 	color: white;
-	font-size: 60px;
-	padding: 34px;
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-weight: 600;
-border: 1px solid black;
+	font-size: 70px;
+	line-height: 110px;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-weight: 600;
+	opacity: 0.7;
+	font-style: italic;
+
 }
 
-.rec-text{
+.rec-text {
 	font-size: 30px;
 	margin-left: 15px;
 
 }
 
-.p-rec{
+.p-rec {
 	padding: 0px 50px 40px 50px;
 }
-.p-rec2{
-	padding-top:50px ;
+
+.p-rec2 {
+	padding-top: 50px;
 }
 
-.item-itd{
+.item-itd {
 
 	padding: 12px 15px;
 }
 
-.item-rec{
+.item-rec {
 	position: relative;
 	border-radius: 50%;
-	box-shadow: 0px 4px 8px RGB(0, 0, 0, 10%) ;
+	box-shadow: 0px 4px 8px RGB(0, 0, 0, 10%);
 
 }
 
-h4{
+h4 {
 	font-size: 34px;
 	color: var(--gray_5);
-padding-top: 30px;
+	padding-top: 30px;
 }
 
-.item-rec-line::before{
+.item-rec-line::before {
 	content: '';
 	position: absolute;
 	height: 1px;
@@ -667,6 +667,7 @@ padding-top: 30px;
 	background-color: rgb(196, 50, 50);
 
 }
+
 /* 
 header{
   opacity: 0;
@@ -678,15 +679,15 @@ header{
   100% {opacity: 1;}
 }
  */
-.element-animation{
+.element-animation {
 	opacity: 0;
-	transform: translateY(100px);
+	transform: translateY(80px);
 }
 
 .element-animation.element-show {
-  opacity: 1;
-  transition: all 1s;
-  transform: translateY(0%);
+	opacity: 1;
+	transition: all 1s;
+	transform: translateY(0%);
 }
 
 /* .element-animation-soc-main{
@@ -708,17 +709,17 @@ header{
 	width: calc(100% - 16px);
 	top: 61px;
 	left: 8px;
-	box-shadow: 0 -4px 8px RGB(0, 0, 0, 20%) ;
+	box-shadow: 0 -4px 8px RGB(0, 0, 0, 20%);
 	background-color: var(--orange);
 	opacity: 1;
-	
+
 }
 
-.js-toc-list a{
+.js-toc-list a {
 	position: relative;
 }
 
-.opac-1{
+.opac-1 {
 	opacity: 1;
 }
 
@@ -726,23 +727,69 @@ header{
 	background-color: #f1f1f1;
 }
 
-.prof{
+.prof {
 	background-color: white;
 	border-radius: 10px;
-	box-shadow: 0 6px 6px 0 RGB(0, 0, 0, 5%) ;
+	box-shadow: 0 6px 6px 0 RGB(0, 0, 0, 5%);
 }
 
-.zapis p{
+.zapis p {
 	font-size: 20px;
 	line-height: 24px;
 }
 
 
-.profile-photo{
-	width: 70%; 
-	margin-left: 15%; 
-	margin-top: 0; 
+.profile-photo {
+	width: 70%;
+	margin-left: 15%;
+	margin-top: 0;
 	margin-bottom: 22px;
 	cursor: pointer;
 	border-radius: 50%;
+}
+
+.sertificatss2 {
+	display: none;
+}
+
+.potom {
+	align-items: center;
+}
+
+.oxxx {
+	padding-left: 100px;
+	padding-top: 40px;
+	padding-bottom: 60px;
+}
+
+.w100prof {
+	width: 100%;
+}
+
+
+
+input:valid , select:valid{
+	background: url(../img/checkbox_green.svg);
+	background-size: 28px;
+	background-repeat: no-repeat;
+	background-position: 0px 5px;
+	padding-left: 35px;
+}
+
+select{
+	outline: 0px;
+	border: 0px solid rgb(255, 255, 255);
+	margin-bottom: 18px;
+	padding: 3px 2px 9px 0px;
+	border-bottom: 1px solid var(--gray_2);
+	line-height: 40px;
+
+}
+
+.modal-time .modal-dialog, .modal-zaya .modal-dialog{
+	max-width: 500px;
+}
+
+.modal-time input, .modal-zaya select, .modal-zaya input{
+	width: 90%;
 }
