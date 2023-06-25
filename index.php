@@ -29,6 +29,7 @@ $connection->set_charset('utf8');
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Lubov Usanova</title>
+	<link rel="shortcut icon" href="img/fav.png" type="image/x-icon">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poiret+One&display=swap" rel="stylesheet">
@@ -150,7 +151,7 @@ $connection->set_charset('utf8');
 			<div class="main">
 				<div class="soc-main">
 					<hr class="soc-hr">
-					<a class="a-soc" target="_blank" href="https://vk.com/l.biuti83">
+					<a class="a-soc" target="_blank" href="https://api.whatsapp.com/send?phone=89005332808">
 						<span class="p-3 bok-soc">Whatsapp</span>
 					</a>
 					<hr class="soc-hr" style="width: 50px;">
@@ -159,10 +160,9 @@ $connection->set_charset('utf8');
 					</a>
 				</div>
 				<div class="main-block-text">
-					<h1 class="element-animation">Мастер по шугарингу и наращиванию <br>
+					<h1 class="element-animation">Мастер по шугарингу <br> и наращиванию
 						ресниц</h1>
-					<h2 class="element-animation">При первом посещении скидка <br>
-						10% на любую услугу</h2>
+
 					<a href="#zaya" class="btn btn-main d-inline-block element-animation">Записаться</a>
 					<div class="facts element-animation">
 						<div class="fact fact1">
@@ -192,14 +192,18 @@ $connection->set_charset('utf8');
 			<div id="uslugi" class="help1">
 				<h3 class="title-design element-animation">Услуги</h3>
 			</div>
-			<div class="row">
+
+			<div class="row menuLimiter">
 				<ul class="menu-recomend element-animation">
-					<li id="narashivanie_usluga" class="activete m-0">Наращивание ресниц</li>
+					<li id="narashivanie_usluga" class="activete m-0 ">Наращивание ресниц</li>
 					<li id="shugaring_uslua">Шугаринг</li>
 					<li id="permonentnyi_usluga">Перманентный макияж</li>
 				</ul>
 			</div>
-			<div id="uslBlock1" class="row p-rec gy-4 mt-sm-4 element-animation">
+
+
+
+			<div id="uslBlock1" class="row p-rec gy-4 mt-sm-2 element-animation">
 				<div class="col-6 col-sm-4">
 					<div class="card">
 						<div class="card-body">
@@ -274,7 +278,7 @@ $connection->set_charset('utf8');
 				</div>
 			</div>
 
-			<div id="uslBlock2" class="row p-rec gy-4 mt-sm-4 d-none element-animation">
+			<div id="uslBlock2" class="row p-rec gy-4 mt-sm-2 d-none element-animation">
 				<div class="col-6 col-sm-4">
 					<div class="card">
 						<div class="card-body">
@@ -385,7 +389,7 @@ $connection->set_charset('utf8');
 				</div>
 			</div>
 
-			<div id="uslBlock3" class="row p-rec gy-4 mt-sm-4 d-none element-animation">
+			<div id="uslBlock3" class="row p-rec gy-4 mt-sm-2 d-none element-animation">
 				<div class="col-6 col-sm-4">
 					<div class="card">
 						<div class="card-body">
@@ -496,10 +500,17 @@ $connection->set_charset('utf8');
 					<h3 class="title-design h3-spec element-animation">Рекомендации</h3>
 				</div>
 				<ul class="menu-recomend element-animation">
-					<li id="narash" class="activete m-0">Наращивание ресниц</li>
-					<li id="shugar">Шугаринг</li>
-					<li id="permonen">Перманентный макияж</li>
+
 				</ul>
+
+				<div class="row menuLimiter">
+					<ul class="menu-recomend element-animation">
+						<li id="narash" class="activete m-0">Наращивание ресниц</li>
+						<li id="shugar">Шугаринг</li>
+						<li id="permonen">Перманентный макияж</li>
+					</ul>
+				</div>
+
 				<div id="recBlock1">
 					<div class="row gy-xl-4 p-rec ">
 						<h4 class="element-animation">Запрещается</h4>
@@ -833,13 +844,17 @@ $connection->set_charset('utf8');
 			<div id="otzv" class="help1">
 				<h3 class="title-design h3-spec element-animation">Отзывы клиентов</h3>
 			</div>
-			<div class="row gy-4 element-animation">
+			<div class="row gy-2 gy-sm-4 element-animation">
 				<div class="col-lg-3 col-md-6 col-12">
 					<div class="card ">
 						<img src="img/otz1.png" class="card-img-top" alt="...">
 						<div class="card-body">
-							<p class="name">Валентина Ушакова</p>
-							<p class="otzText">Супер класс сосиска квас. Всем советую, всем рекомендую 19 раз, с новым годом</p>
+							<p class="name">Наталия Ластовская</p>
+							<div class="expandable">
+								<p class="otzText">Понравилось🤗 Всё.... И бровки и реснички🌻 )! И девушка очаровательная😜, и работа чудесная 😘) Все очень аккуратно сделала. Посмотрим, что будет дальше в носке, но пока кайфую от глазок )❤💋. Спасибо большое....</p>
+							</div>
+							<button class="expand-button reg-link" onclick="toggleExpand()">Развернуть</button>
+
 						</div>
 					</div>
 				</div>
@@ -847,8 +862,11 @@ $connection->set_charset('utf8');
 					<div class="card ">
 						<img src="img/otz2.png" class="card-img-top" alt="...">
 						<div class="card-body">
-							<p class="name">Валерия Голубева</p>
-							<p class="otzText">Супер класс сосиска квас. Всем советую, всем рекомендую 19 раз, с новым годом</p>
+							<p class="name">Ирина Соколова</p>
+							<div class="expandable expandable2">
+								<p class="otzText">Вчера сделала реснички.. нет слов СУПЕР!!!! Любочка, спасибо огромное.. Ручки золотые... я много мастеров прошла.. но так мне сделали в первые... просто безупречная работа!!! Теперь буду постоянным клиентом 100%!! ВСЕМ советую.. не пожалеете ни разу... Люба, ещё раз ОГРОМНОЕ СПАСИБО!!!!!</p>
+							</div>
+							<button class="expand-button expand-button2 reg-link" onclick="toggleExpand2()">Развернуть</button>
 						</div>
 					</div>
 				</div>
@@ -856,8 +874,14 @@ $connection->set_charset('utf8');
 					<div class="card ">
 						<img src="img/otz3.png" class="card-img-top" alt="...">
 						<div class="card-body">
-							<p class="name">Милана Соловьева</p>
-							<p class="otzText">Супер класс сосиска квас. Всем советую, всем рекомендую 19 раз, с новым годом</p>
+							<p class="name">Алена Кузьмина</p>
+							<div class="expandable expandable3">
+								<p class="otzText">Девочкина радость!!!👧
+									Что может быть лучше нарощенных ресниц, упрощающих нам жизнь!? Это только КАЧЕСТВЕННО нарощенные ресницы! Сказать,что я довольна, ничего не сказать.
+									Советаю Вам мастера Любу! Выслушает все пожелания и сделает еще лучше.
+									Спасибо огромное, любимый мастер.</p>
+							</div>
+							<button class="expand-button expand-button3 reg-link" onclick="toggleExpand3()">Развернуть</button>
 						</div>
 					</div>
 				</div>
@@ -865,8 +889,11 @@ $connection->set_charset('utf8');
 					<div class="card ">
 						<img src="img/otz4.png" class="card-img-top" alt="...">
 						<div class="card-body">
-							<p class="name">Андрей Гусь</p>
-							<p class="otzText">Супер класс сосиска квас. Всем советую, всем рекомендую 19 раз, с новым годом</p>
+							<p class="name">Вера Гириева</p>
+							<div class="expandable expandable4">
+								<p class="otzText">Спасибо большое за классные реснички и брови! Люба, вы мастер своего дела. Очень жаль, что живу в другом городе и не смогу стать Вашим постоянным клиентом. Вы делаете мир красивее и дарите нам радость💐</p>
+							</div>
+							<button class="expand-button expand-button4 reg-link" onclick="toggleExpand4()">Развернуть</button>
 						</div>
 					</div>
 				</div>
@@ -924,64 +951,81 @@ $connection->set_charset('utf8');
 							<input name="tel2" id="tel2" type="tel" placeholder="Номер телефона" required pattern="[+0-9\s()\-\x2012]+">
 							<select name="procedure2" id="procedure2" required>
 								<option value="" disabled selected>Выберите процедуру</option>
-								<option value="Классика">Наращивание Классика</option>
-								<option value="2D эффект">Наращивание 2D эффект</option>
-								<option value="3D эффект">Наращивание 3D эффект</option>
-								<option value="4D эффект">Наращивание 4D эффект</option>
-								<option value="Y эффект">Наращивание Y эффект</option>
-								<option value="Снятие чужой работы">Наращивание Снятие чужой работы</option>
+								<option value="Классика">Наращивание Классика 1000р</option>
+								<option value="2D эффект">Наращивание 2D эффект 1200р</option>
+								<option value="3D эффект">Наращивание 3D эффект 1300р</option>
+								<option value="4D эффект">Наращивание 4D эффект 1400р</option>
+								<option value="Y эффект">Наращивание Y эффект 1300р</option>
+								<option value="Снятие чужой работы">Наращивание Снятие чужой работы 100р</option>
+								<option value="Усики">Шугаринг усики 100р</option>
+								<option value="Подмышечные впадины">Шугаринг подмышечные впадины 200р</option>
+								<option value="Руки до локтя">Шугаринг руки до локтя 250р</option>
+								<option value="Руки полностью">Шугаринг руки полностью 500р</option>
+								<option value="Ноги до колена">Шугаринг ноги до колена 500р</option>
+								<option value="Ноги полностью">Шугаринг ноги полностью 900р</option>
+								<option value="Бикини класика">Шугаринг бикини класика 500р</option>
+								<option value="Бикини глубокое">Шугаринг бикини глубокое 800р</option>
+								<option value="Блеск-тату">Шугаринг блеск-тату 250р</option>
+								<option value="Брови напыление">Перманентный брови напыление 3000р</option>
+								<option value="Брови коррекция">Перманентный брови коррекция 2000р</option>
+								<option value="Глаза напыление">Перманентный глаза напыление 3000р</option>
+								<option value="Глаза коррекция">Перманентный глаза коррекция 2000р</option>
+								<option value="Губы напыление">Перманентный губы напыление 2000р</option>
+								<option value="Губы коррекция">Перманентный губы коррекция 2000р</option>
+								<option value="Микроблейдинг">Перманентный микроблейдинг 4000р</option>
+								<option value="Микроблейдинг коррекция">Перманентный микроблейдинг коррекция 2500р</option>
 							</select>
 
 							<select name="date2" id="date2" required>
-							<option value="" disabled selected>Выберите дату</option>
-							<?php
-							$dateQuery = "SELECT DISTINCT date FROM time";
-							$dateResult = mysqli_query($connection, $dateQuery);
+								<option value="" disabled selected>Выберите дату</option>
+								<?php
+								$dateQuery = "SELECT DISTINCT date FROM time";
+								$dateResult = mysqli_query($connection, $dateQuery);
 
-							while ($row = mysqli_fetch_assoc($dateResult)) {
-								$date = $row['date'];
-								echo "<option value='$date'>" . date("d.m", strtotime($date)) . "</option>";
-							}
-							?>
+								while ($row = mysqli_fetch_assoc($dateResult)) {
+									$date = $row['date'];
+									echo "<option value='$date'>" . date("d.m", strtotime($date)) . "</option>";
+								}
+								?>
 
-						</select>
+							</select>
 
-						<select name="time2" id="time2" required>
-							<option value="" disabled selected>Выберите время</option>
-						</select>
+							<select name="time2" id="time2" required>
+								<option value="" disabled selected>Выберите время</option>
+							</select>
 
 
-						<script>
-							document.getElementById('date2').addEventListener('change', function() {
-								var selectedDate = this.value;
-								var timeSelect = document.getElementById('time2');
-								timeSelect.innerHTML = '<option value="" disabled selected>Выберите время</option>';
+							<script>
+								document.getElementById('date2').addEventListener('change', function() {
+									var selectedDate = this.value;
+									var timeSelect = document.getElementById('time2');
+									timeSelect.innerHTML = '<option value="" disabled selected>Выберите время</option>';
 
-								// Запрос на сервер для получения времени на основе выбранной даты
-								var xhr = new XMLHttpRequest();
-								xhr.onreadystatechange = function() {
-									if (xhr.readyState === XMLHttpRequest.DONE) {
-										if (xhr.status === 200) {
-											var times = JSON.parse(xhr.responseText);
-											times.forEach(function(time) {
-												var option = document.createElement('option');
-												option.value = time;
-												option.text = time;
-												timeSelect.appendChild(option);
-											});
-										} else {
-											console.log('Ошибка: ' + xhr.status);
+									// Запрос на сервер для получения времени на основе выбранной даты
+									var xhr = new XMLHttpRequest();
+									xhr.onreadystatechange = function() {
+										if (xhr.readyState === XMLHttpRequest.DONE) {
+											if (xhr.status === 200) {
+												var times = JSON.parse(xhr.responseText);
+												times.forEach(function(time) {
+													var option = document.createElement('option');
+													option.value = time;
+													option.text = time;
+													timeSelect.appendChild(option);
+												});
+											} else {
+												console.log('Ошибка: ' + xhr.status);
+											}
 										}
-									}
-								};
-								xhr.open('GET', 'get_times.php?date=' + selectedDate, true);
-								xhr.send();
-							});
-						</script>
+									};
+									xhr.open('GET', 'get_times.php?date=' + selectedDate, true);
+									xhr.send();
+								});
+							</script>
 							<button name="submit" class="btn btn-header d-block mt-4 btn-zaya">Записаться</button>
 
 						</form>
-						<div class=" col-md-6 br-10 z-img br-10 justify-content-center align-items-center">
+						<div class=" col-md-6 br-10 z-img br-10 ">
 							<p>Красивой <br> быть просто</p>
 						</div>
 					</div>
@@ -1004,70 +1048,88 @@ $connection->set_charset('utf8');
 
 					<div class="row teni br-10 element-animation">
 
-					<form action="" class="col-12 col-md-6 br-10 block-zaya" method="post" name="zayavka3">
-						<select name="procedure3" id="procedure3" required>
-							<option value="" disabled selected>Выберите процедуру</option>
-							<option value="Классика">Наращивание Классика</option>
-							<option value="2D эффект">Наращивание 2D эффект</option>
-							<option value="3D эффект">Наращивание 3D эффект</option>
-							<option value="4D эффект">Наращивание 4D эффект</option>
-							<option value="Y эффект">Наращивание Y эффект</option>
-							<option value="Снятие чужой работы">Наращивание Снятие чужой работы</option>
-						</select>
+						<form action="" class="col-12 col-md-6 br-10 block-zaya" method="post" name="zayavka3">
+							<select name="procedure3" id="procedure3" required>
+								<option value="" disabled selected>Выберите процедуру</option>
+								<option value="Классика">Наращивание Классика 1000р</option>
+								<option value="2D эффект">Наращивание 2D эффект 1200р</option>
+								<option value="3D эффект">Наращивание 3D эффект 1300р</option>
+								<option value="4D эффект">Наращивание 4D эффект 1400р</option>
+								<option value="Y эффект">Наращивание Y эффект 1300р</option>
+								<option value="Снятие чужой работы">Наращивание Снятие чужой работы 100р</option>
+								<option value="Усики">Шугаринг усики 100р</option>
+								<option value="Подмышечные впадины">Шугаринг подмышечные впадины 200р</option>
+								<option value="Руки до локтя">Шугаринг руки до локтя 250р</option>
+								<option value="Руки полностью">Шугаринг руки полностью 500р</option>
+								<option value="Ноги до колена">Шугаринг ноги до колена 500р</option>
+								<option value="Ноги полностью">Шугаринг ноги полностью 900р</option>
+								<option value="Бикини класика">Шугаринг бикини класика 500р</option>
+								<option value="Бикини глубокое">Шугаринг бикини глубокое 800р</option>
+								<option value="Блеск-тату">Шугаринг блеск-тату 250р</option>
+								<option value="Брови напыление">Перманентный брови напыление 3000р</option>
+								<option value="Брови коррекция">Перманентный брови коррекция 2000р</option>
+								<option value="Глаза напыление">Перманентный глаза напыление 3000р</option>
+								<option value="Глаза коррекция">Перманентный глаза коррекция 2000р</option>
+								<option value="Губы напыление">Перманентный губы напыление 2000р</option>
+								<option value="Губы коррекция">Перманентный губы коррекция 2000р</option>
+								<option value="Микроблейдинг">Перманентный микроблейдинг 4000р</option>
+								<option value="Микроблейдинг коррекция">Перманентный микроблейдинг коррекция 2500р</option>
 
-						<select name="date3" id="date3" required>
-							<option value="" disabled selected>Выберите дату</option>
-							<?php
-							$dateQuery = "SELECT DISTINCT date FROM time";
-							$dateResult = mysqli_query($connection, $dateQuery);
+							</select>
 
-							while ($row = mysqli_fetch_assoc($dateResult)) {
-								$date = $row['date'];
-								echo "<option value='$date'>" . date("d.m", strtotime($date)) . "</option>";
-							}
-							?>
+							<select name="date3" id="date3" required>
+								<option value="" disabled selected>Выберите дату</option>
+								<?php
+								$dateQuery = "SELECT DISTINCT date FROM time";
+								$dateResult = mysqli_query($connection, $dateQuery);
 
-						</select>
+								while ($row = mysqli_fetch_assoc($dateResult)) {
+									$date = $row['date'];
+									echo "<option value='$date'>" . date("d.m", strtotime($date)) . "</option>";
+								}
+								?>
 
-						<select name="time3" id="time3" required>
-							<option value="" disabled selected>Выберите время</option>
-						</select>
+							</select>
 
-						<button name="submit3" class="btn btn-header d-block mt-4 btn-zaya">Записаться</button>
+							<select name="time3" id="time3" required>
+								<option value="" disabled selected>Выберите время</option>
+							</select>
 
-						<script>
-							document.getElementById('date3').addEventListener('change', function() {
-								var selectedDate = this.value;
-								var timeSelect = document.getElementById('time3');
-								timeSelect.innerHTML = '<option value="" disabled selected>Выберите время</option>';
+							<button name="submit3" class="btn btn-header d-block mt-4 btn-zaya">Записаться</button>
 
-								// Запрос на сервер для получения времени на основе выбранной даты
-								var xhr = new XMLHttpRequest();
-								xhr.onreadystatechange = function() {
-									if (xhr.readyState === XMLHttpRequest.DONE) {
-										if (xhr.status === 200) {
-											var times = JSON.parse(xhr.responseText);
-											times.forEach(function(time) {
-												var option = document.createElement('option');
-												option.value = time;
-												option.text = time;
-												timeSelect.appendChild(option);
-											});
-										} else {
-											console.log('Ошибка: ' + xhr.status);
+							<script>
+								document.getElementById('date3').addEventListener('change', function() {
+									var selectedDate = this.value;
+									var timeSelect = document.getElementById('time3');
+									timeSelect.innerHTML = '<option value="" disabled selected>Выберите время</option>';
+
+									// Запрос на сервер для получения времени на основе выбранной даты
+									var xhr = new XMLHttpRequest();
+									xhr.onreadystatechange = function() {
+										if (xhr.readyState === XMLHttpRequest.DONE) {
+											if (xhr.status === 200) {
+												var times = JSON.parse(xhr.responseText);
+												times.forEach(function(time) {
+													var option = document.createElement('option');
+													option.value = time;
+													option.text = time;
+													timeSelect.appendChild(option);
+												});
+											} else {
+												console.log('Ошибка: ' + xhr.status);
+											}
 										}
-									}
-								};
-								xhr.open('GET', 'get_times.php?date=' + selectedDate, true);
-								xhr.send();
-							});
-						</script>
+									};
+									xhr.open('GET', 'get_times.php?date=' + selectedDate, true);
+									xhr.send();
+								});
+							</script>
 
 
-					</form>
+						</form>
 
-						<div class=" col-md-6 br-10 z-img br-10 justify-content-center align-items-center">
-							<p>Красивой быть <br> просто</p>
+						<div class=" col-md-6 br-10 z-img br-10 ">
+							<p>Красивой<br> быть <br> просто</p>
 						</div>
 					</div>
 				</div>
@@ -1106,7 +1168,7 @@ $connection->set_charset('utf8');
 				<a class="a-soc" target="_blank" href="https://vk.com/l.biuti83">
 					<img src="img/vk-logo-svgrepo-com.svg" alt="">
 				</a>
-				<a class="a-soc" target="_blank" href="https://vk.com/l.biuti83">
+				<a class="a-soc" target="_blank" href="https://api.whatsapp.com/send?phone=89005332808">
 					<img src="img/whatsapp-svgrepo-com.svg" alt="">
 				</a>
 			</div>
@@ -1116,8 +1178,8 @@ $connection->set_charset('utf8');
 	</footer>
 
 
-	<!-- Modal-login -->
-	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal-login -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<img src="img/login.png" alt="">
 
@@ -1141,7 +1203,6 @@ $connection->set_charset('utf8');
 			</form>
 		</div>
 	</div>
-
 
 
 	<!-- Modal-registr -->
@@ -1168,7 +1229,6 @@ $connection->set_charset('utf8');
 					<button name="send" type="submit" class="btn btn-header">Создать</button>
 				</div>
 			</form>
-
 		</div>
 	</div>
 

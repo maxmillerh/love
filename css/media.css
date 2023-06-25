@@ -372,6 +372,13 @@
 		padding-right: 5px;
 		padding-left: 5px;
 		margin-top: 10px;
+	
+	}
+
+	.recomend .menuLimiter {
+		padding-right: 5px;
+		padding-left: 5px;
+		margin-top: 10px;
 	}
 
 	.card-body {
@@ -568,6 +575,7 @@
 
 	.footer ul {
 		flex-direction: column;
+		justify-content: center;
 	}
 
 	.potom {
@@ -575,7 +583,7 @@
 	}
 
 	h1 {
-		font-size: 36px;
+		font-size: 32px;
 	}
 
 	.menu-link {
@@ -588,8 +596,18 @@
 		margin-top: 26px;
 	}
 
-	.main-img {
+	.main-img img{
 		display: none;
+	}
+	.main-img{
+		background-image: url("../img/main-img.png");
+		background-repeat: no-repeat;
+		background-position: left;
+		background-size: cover;
+    width: 170px;
+    height: 310px;
+		opacity: 0.05;
+		right: -12px;
 	}
 
 	.fact span {
@@ -634,12 +652,14 @@
 
 	.card-title {
 		font-size: 16px;
-
+ overflow: hidden; /* Добавляем overflow: hidden; для обрезания текста, который не помещается */
+  text-overflow: ellipsis; /* Добавляем text-overflow: ellipsis; для отображения многоточия, если текст обрезается */
+  white-space: nowrap;
 	}
 
 	.card-text {
 		line-height: 16px;
-		font-size: 16px;
+		font-size: 14px;
 	}
 
 	.card .btn {
@@ -715,5 +735,152 @@ input {
 .mb-10{
 margin-bottom: 20px;
 }
+
+
+.menuLimiter {
+  width: 350px;
+  overflow-x: auto; /* Используем overflow-x: auto; для создания полосы прокрутки при необходимости */
+  -webkit-overflow-scrolling: touch;
+}
+
+.otzivs img {
+	width: 50px;
+	height: 50px;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+.otzivs .card{
+	display: flex;
+	flex-direction: row;
+}
+
+.name {
+	font-size: 18px;
+	line-height: 30px;
+	text-align: left;
+	margin-bottom: 5px;
+}
+
+.otzText {
+	font-size: 16px;
+	line-height: 20px;
+	text-align: left;
+}
+
+.otzivs .card-body{
+	margin-left: 5px;
+}
+
+.modal-title {
+	font-size: 28px;
+}
+
+.modal-footer {
+	padding-left: 1rem;
+}
+
+.btn-header {
+	font-size: 16px;
+	padding: 6px 30px;
+	margin-left: 8px;
+	margin-bottom: 8px;
+	margin-top: 13px;
+}
+
+.btn-main {
+	margin-top: 50px;
+	margin-bottom: 20px;
+}
+
+.btn-header-admin{
+	font-size: 12px;
+	padding: 5px 8px;
+	margin-left: 0px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+
+}
+
+.logo-admin{
+	margin-right: 5px;
+	font-size: 20px;
+}
+
+.profile-photo {
+	width: 70px;
+	height: 70px;
+	margin-left: 10px;
+	margin-bottom: 0;
+	
+}
+
+.username_profile{
+	font-size: 22px;
+	display: inline-block;
+	margin-left: 12px;
+	font-weight: bold;
+}
+
+.foto_username{
+	display: flex;
+	align-items: center;
+}
+
+.profile_data{
+	line-height: 24px;
+	font-size: 22px;
+}
+
+.avatarkanone{
+	width: 70px; 
+	height: 70px; 
+	font-size:50px;
+}
+
+.zapnone{
+	font-size:20px;
+	margin-top: 20px;
+}
+
+.main-profile input{
+	width: 80%;
+}
+
+.lichprofile{
+	display: none;
+}
+
+.pivas{
+	display: none;
+}
+
+.procnameprof{
+	font-size: 26px; 
+	color: rgb(48, 47, 47);
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+.timedateprof{
+	display: inline-block;
+	font-size: 16px;
+	line-height: 28;
+	margin-right: 16px;
+}
+
+select{
+    border: none;
+    border-bottom: 1px solid #ebebeb;
+    width: 100%;
+    font-size: 20px;
+    padding-bottom: 4px;
+		color: var(--gray_3);
+
+}
+select:valid {
+	background-position: 0px 1px;
+}
+
 
 }

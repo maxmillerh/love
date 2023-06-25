@@ -90,7 +90,7 @@ body {
 }
 
 main {
-	margin-top: 110px;
+	margin-top: 90px;
 }
 
 .main {
@@ -101,7 +101,7 @@ main {
 
 
 h1 {
-	font-size: 60px;
+	font-size: 68px;
 	color: var(--gray_5);
 }
 
@@ -113,7 +113,7 @@ h1 {
 }
 
 .facts {
-	margin-top: 120px;
+	margin-top: 80px;
 	margin-bottom: 30px;
 }
 
@@ -195,15 +195,16 @@ h1 {
 	list-style-type: none;
 	margin-left: 0;
 	padding-left: 0;
-	height: 26px;
 	color: #645C5C;
 	font-size: 28px;
-	margin-bottom: 50px;
+	display: flex;
+	white-space: nowrap;
 
 }
 
+
 .menu-recomend li {
-	float: left;
+	display: inline-block;
 	margin-left: 14px;
 	position: relative;
 	cursor: pointer;
@@ -295,6 +296,7 @@ p {
 	margin: 0;
 	margin-left: 20px;
 	margin-top: 16px;
+	font-weight: bold;
 }
 
 .cont-sup {
@@ -405,6 +407,9 @@ svg {
 	color: var(--gray_3);
 	margin-top: 26px;
 	margin-bottom: 30px;
+	overflow: hidden; /* Добавляем overflow: hidden; для обрезания текста, который не помещается */
+  text-overflow: ellipsis; /* Добавляем text-overflow: ellipsis; для отображения многоточия, если текст обрезается */
+  white-space: nowrap;
 }
 
 .uslugs .card:hover {
@@ -443,6 +448,7 @@ svg {
 	font-size: 26px;
 	color: var(--gray_5);
 	text-align: center;
+	font-weight: bold;
 
 }
 
@@ -450,7 +456,11 @@ svg {
 	font-size: 20px;
 	color: var(--gray_2);
 	line-height: 26px;
-	text-align: center;
+  word-wrap: break-word; /* Поддержка старых браузеров */
+  overflow-wrap: break-word; /* Современный вариант */
+  hyphens: auto;
+	padding-bottom: 0;
+	margin-bottom: 0;
 }
 
 .carousel-indicators {
@@ -603,23 +613,22 @@ input:focus, select:focus{
 }
 
 .z-img {
-	background-image: url("../img/zayavka.jpg");
+	background-image: url("../img/baner.jpg");
 	background-repeat: no-repeat;
-	background-position: center;
+	background-position: left;
 	background-size: cover;
 	border-radius: 0 10px 10px 0;
 	display: flex;
-
+	justify-content: start;
+align-items: center;
 
 }
 
 .z-img p {
-	text-shadow: 0 0 5px rgb(0, 0, 0);
-	color: white;
-	font-size: 70px;
-	line-height: 110px;
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-	font-weight: 600;
+	margin-left: 40px;
+	color: rgb(0, 0, 0);
+	font-size: 54px;
+	line-height: 72px;
 	opacity: 0.7;
 	font-style: italic;
 
@@ -740,12 +749,15 @@ header{
 
 
 .profile-photo {
-	width: 70%;
+	width: 70%; /* Ширина в процентах */
+	aspect-ratio: 1/1; /* Аспектное соотношение 1:1 (высота:ширина) */
+	object-fit: cover;
 	margin-left: 15%;
 	margin-top: 0;
 	margin-bottom: 22px;
 	cursor: pointer;
 	border-radius: 50%;
+	
 }
 
 .sertificatss2 {
@@ -783,7 +795,12 @@ select{
 	padding: 3px 2px 9px 0px;
 	border-bottom: 1px solid var(--gray_2);
 	line-height: 40px;
+  overflow-y: auto;
+	cursor: pointer;
+}
 
+option{
+	cursor: pointer;
 }
 
 .modal-time .modal-dialog, .modal-zaya .modal-dialog{
@@ -793,3 +810,80 @@ select{
 .modal-time input, .modal-zaya select, .modal-zaya input{
 	width: 90%;
 }
+
+.free_time_admin{
+	font-size: 18px;
+	padding: 8px 16px;
+	background-color: rgb(247, 247, 247);
+	border-radius: 20px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+}
+
+.free_date_admin{
+padding-top: 0;
+margin: 5px 0;
+margin-bottom: 13px;
+}
+
+.mda{
+	height: auto;
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.expandable {
+	overflow: hidden; /* Скрываем изначально текст, выходящий за пределы блока */
+	max-height: 100px; /* Максимальная высота блока, когда текст скрыт */
+	transition: max-height 0.5s ease; /* Плавная анимация раскрытия/скрытия */
+	word-wrap: break-word; /* Поддержка старых браузеров */
+  overflow-wrap: break-word; /* Современный вариант */
+  hyphens: auto;
+	width: 100%;
+	max-width: 100%;
+}
+
+.expanded {
+	max-height: none; /* Развернутый блок имеет максимальную высоту без ограничений */
+}
+
+.expand-button {
+border: none;
+background-color: white;
+color: var(--gray_2);
+font-size: 20px;
+margin-left: 4px;
+margin-top: 16px;
+margin-bottom: 10px;
+}
+
+.username_profile{
+	text-align: center; 
+	color: rgb(41, 40, 40);
+	 margin-bottom:5px;
+}
+
+.profile_data{
+	line-height: 30px;
+}
+.avatarkanone{
+	background-color: var(--gray_1);
+	width: 70%; 
+	height:292px; 
+	font-size:90px;
+	border: 0.7px var(--gray_4) solid;
+	border-radius: 50%;
+	color: var(--gray_4);
+}
+
+.zapnone{
+	font-size:30px;
+}
+
+.procnameprof{
+	font-size: 26px; 
+	color: rgb(48, 47, 47);
+	margin-bottom: 30px;
+}
+

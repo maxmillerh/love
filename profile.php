@@ -55,34 +55,46 @@ if (isset($_POST['sandEmail'])) {
 }
 $_SESSION['email'] = $email;
 
+
 //добавление фото в бд
-if (isset($_POST['btnSavePhoto'])) {
+if (isset($_FILES['photo'])) {
+	$photo = $_FILES['photo'];
 
-	$photo = $_POST["photo"];
+	// Получение информации о загруженном файле
+	$file_name = $photo['name'];
+	$file_tmp = $photo['tmp_name'];
+	$file_size = $photo['size'];
+	$file_error = $photo['error'];
 
-	// Обновление записи в базе данных
-	$query = "UPDATE registr SET photo = ? WHERE tel = ?";
-	$stmt = $connection->prepare($query);
-	$stmt->bind_param("ss", $photo, $tel);
-	$stmt->execute();
-	// Проверка успешности выполнения запроса
-	if ($stmt->affected_rows > 0) {
-		// Почта успешно добавлена в базу данных
-		$_SESSION['photo'] = $photo;
+	// Проверка наличия файла и отсутствия ошибок
+	if ($file_size > 0 && $file_error === 0) {
+		// Чтение содержимого файла в виде строки
+		$file_data = file_get_contents($file_tmp);
+
+		// Подготовка запроса на добавление фото в базу данных
+		$query = "UPDATE registr SET photo = ? WHERE tel = ?";
+		$stmt = $connection->prepare($query);
+		$stmt->bind_param("ss", $file_data, $tel);
+		$stmt->execute();
+
+		if ($stmt->affected_rows > 0) {
+			// Фото успешно добавлено в базу данных
+			$_SESSION['photo'] = $file_data;
+		} else {
+			// Произошла ошибка при добавлении фото
+			$message = $connection->error;
+			echo $message;
+		}
 	} else {
-		// Произошла ошибка при добавлении почты
-		$message =  $connection->error;
-		echo $message;
-	}
-
-	if ($stmt->error) {
-		echo "Ошибка при выполнении запроса: " . $stmt->error;
+		// Обработка ошибок при загрузке фото
+		echo "Ошибка загрузки фото";
 	}
 }
-$_SESSION['photo'] = $photo;
+
+
 
 // Запрос на выборку данных из базы данных для вывода записей
-$query = "SELECT * FROM zaya WHERE tel = ?";
+$query = "SELECT * FROM zaya WHERE tel = ? ORDER BY date, time";
 $stmt = $connection->prepare($query);
 $stmt->bind_param("s", $tel);
 $stmt->execute();
@@ -97,6 +109,7 @@ $result = $stmt->get_result();
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Lubov Usanova</title>
+	<link rel="shortcut icon" href="img/fav.png" type="image/x-icon">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poiret+One&display=swap" rel="stylesheet">
@@ -195,7 +208,7 @@ $result = $stmt->get_result();
 	<!-- header-end -->
 
 
-	<div class="container">
+	<div class="container lichprofile">
 		<div id="zaya" class="help1">
 			<h3 style="margin-top: 0px; margin-bottom: 0px; font-size: 28px;" class=" element-animation">Личный профиль</h3>
 		</div>
@@ -206,19 +219,30 @@ $result = $stmt->get_result();
 		<div class="container pr-md-5 pl-md-5 d-flex oxxx ">
 			<div class="row g-md-5 w100prof">
 				<div class="col-12 col-md-5 element-animation mb-10">
-					<div class="prof p-4">
-
-						<?php if (!empty($photo)) : ?>
-							<img data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-dismiss="modal" src="img/<?php echo $photo; ?>" class="card-img-top profile-photo" alt="Фото пользователя">
-						<?php else : ?>
-							<button style="width: 70%; height:292px; font-size:90px;" data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-dismiss="modal" class="card-img-top profile-photo">+</button>
-						<?php endif; ?>
+					<div class="prof p-3 p-md-4">
 
 
-						<p style="text-align: center; color: rgb(41, 40, 40); margin-bottom:5px;"><?php echo $username, " ", $usersurname ?></p>
+						<div class="foto_username">
+							<?php if (!empty($photo)) :	?>
+								<?php
+								// Предполагается, что $file_data содержит фотографию в виде строки из базы данных
+								if (isset($_SESSION['photo'])) {
+									$file_data = $_SESSION['photo'];
+									$base64_image = base64_encode($file_data);
+									$image_src = 'data:image/jpeg;base64,' . $base64_image;
+									echo '<img data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-dismiss="modal" src="' . $image_src . '"  class="card-img-top profile-photo" alt="Фото пользователя">';
+								}
+								?>
+							<?php else : ?>
+								<button class="avatarkanone" data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-dismiss="modal" class="card-img-top profile-photo">+</button>
+							<?php endif; ?>
+
+
+							<p class="username_profile"><?php echo $username, " ", $usersurname ?></p>
+						</div>
 						<hr style="width: 60px; margin: 0px auto 30px auto;">
-						<p style="line-height: 30px;"><?php echo $tel ?></p>
-						<p id="email_p" style="line-height: 30px;"><?php echo $email ?></p>
+						<p class="profile_data"><?php echo $tel ?></p>
+						<p id="email_p" class="profile_data"><?php echo $email ?></p>
 
 						<form id="content_mailAdd" class="content-mailAdd d-none mt-4" method="post" action="">
 							<input class="d-block" name="email" id="email" type="email" placeholder="Почта" required>
@@ -242,7 +266,7 @@ $result = $stmt->get_result();
 				</div>
 
 				<div class="col-12 col-md-7 ml-5 element-animation  mb-10">
-					<p>Ваши записи:</p>
+					<p class="pivas">Ваши записи:</p>
 
 					<?php
 					// Проверка наличия результатов
@@ -258,18 +282,18 @@ $result = $stmt->get_result();
 							$record_id = $row['id']; // Добавлено: получаем идентификатор записи
 
 							// Дальнейшая обработка данных...
-							echo "<div class='prof zapis p-4 pl-5 mt-4'>";
-							echo "<p style='font-size: 26px; color: rgb(48, 47, 47); margin-bottom: 30px;'>" . $proc . "</p>";
-							echo "<p>Дата: " . date("d.m", strtotime($date)) . "</p>";
-							echo "<p>Время: " . date("H:i", strtotime($time)) .  "</p>";
-							echo "<div class='d-flex justify-content-between mt-5'>";
+							echo "<div class='prof zapis p-3 p-md-4 pl-5 mt-lg-4 mt-2'>";
+							echo "<p class='procnameprof'>" . $proc . "</p>";
+							echo "<p class='timedateprof'>Дата: " . date("d.m", strtotime($date)) . "</p>";
+							echo "<p class='timedateprof'>Время: " . date("H:i", strtotime($time)) .  "</p>";
+							echo "<div class='d-flex justify-content-between mt-lg-5 mt-2'>";
 							echo "<p style='font-size: 28px; color: rgb(85, 81, 81);'>" . $price . "р </p>";
 							echo "<button class='btn btn-delete' data-record-id='$record_id'>Отменить запись</button>"; // Добавлено: атрибут с идентификатором записи
 							echo "</div>";
 							echo "</div>";
 						}
 					} else {
-						echo  "<p style='font-size:30px;'>У вас пока нет записей <a class='btn' href='#zaya3'>Записаться?</a></p>";
+						echo  "<p class='zapnone'>У вас пока нет записей <a class='btn' href='#zaya3'>Записаться?</a></p>";
 					}
 					?>
 
@@ -295,12 +319,29 @@ $result = $stmt->get_result();
 					<form action="" class="col-12 col-md-6 br-10 block-zaya" method="post" name="zayavka3">
 						<select name="procedure3" id="procedure3" required>
 							<option value="" disabled selected>Выберите процедуру</option>
-							<option value="Классика">Наращивание Классика</option>
-							<option value="2D эффект">Наращивание 2D эффект</option>
-							<option value="3D эффект">Наращивание 3D эффект</option>
-							<option value="4D эффект">Наращивание 4D эффект</option>
-							<option value="Y эффект">Наращивание Y эффект</option>
-							<option value="Снятие чужой работы">Наращивание Снятие чужой работы</option>
+							<option value="Классика">Наращивание Классика 1000р</option>
+							<option value="2D эффект">Наращивание 2D эффект 1200р</option>
+							<option value="3D эффект">Наращивание 3D эффект 1300р</option>
+							<option value="4D эффект">Наращивание 4D эффект 1400р</option>
+							<option value="Y эффект">Наращивание Y эффект 1300р</option>
+							<option value="Снятие чужой работы">Наращивание Снятие чужой работы 100р</option>
+							<option value="Усики">Шугаринг усики 100р</option>
+							<option value="Подмышечные впадины">Шугаринг подмышечные впадины 200р</option>
+							<option value="Руки до локтя">Шугаринг руки до локтя 250р</option>
+							<option value="Руки полностью">Шугаринг руки полностью 500р</option>
+							<option value="Ноги до колена">Шугаринг ноги до колена 500р</option>
+							<option value="Ноги полностью">Шугаринг ноги полностью 900р</option>
+							<option value="Бикини класика">Шугаринг бикини класика 500р</option>
+							<option value="Бикини глубокое">Шугаринг бикини глубокое 800р</option>
+							<option value="Блеск-тату">Шугаринг блеск-тату 250р</option>
+							<option value="Брови напыление">Перманентный брови напыление 3000р</option>
+							<option value="Брови коррекция">Перманентный брови коррекция 2000р</option>
+							<option value="Глаза напыление">Перманентный глаза напыление 3000р</option>
+							<option value="Глаза коррекция">Перманентный глаза коррекция 2000р</option>
+							<option value="Губы напыление">Перманентный губы напыление 2000р</option>
+							<option value="Губы коррекция">Перманентный губы коррекция 2000р</option>
+							<option value="Микроблейдинг">Перманентный микроблейдинг 4000р</option>
+							<option value="Микроблейдинг коррекция">Перманентный микроблейдинг коррекция 2500р</option>
 						</select>
 
 						<select name="date3" id="date3" required>
@@ -355,8 +396,8 @@ $result = $stmt->get_result();
 					</form>
 
 
-					<div class=" col-md-6 br-10 z-img br-10 justify-content-center align-items-center">
-						<p>Красивой быть <br> просто</p>
+					<div class=" col-md-6 br-10 z-img br-10 ">
+						<p>Красивой <br> быть <br> просто</p>
 					</div>
 				</div>
 			</div>
@@ -389,7 +430,7 @@ $result = $stmt->get_result();
 				<a class="a-soc" target="_blank" href="https://vk.com/l.biuti83">
 					<img style="width: 44px;" src="img/vk-logo-svgrepo-com.svg" alt="">
 				</a>
-				<a class="a-soc" target="_blank" href="https://vk.com/l.biuti83">
+				<a class="a-soc" target="_blank" href="https://api.whatsapp.com/send?phone=89005332808">
 					<img src="img/whatsapp-svgrepo-com.svg" alt="">
 				</a>
 			</div>
@@ -401,13 +442,14 @@ $result = $stmt->get_result();
 	<!-- Modal-save photo -->
 	<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
 		<div class="modal-dialog" style="max-width: 576px;">
-			<form action="" method="post" class="modal-content" name="savephoto">
+			<form action="" method="post" class="modal-content" name="savephoto" enctype="multipart/form-data">
 				<div class="modal-header">
 					<h1 class="modal-title" id="exampleModalLabel">Добавить фото</h1>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<input type="file" name="photo" id="photo" required>
+					<input type="file" name="photo" accept="image/jpeg, image/png" required>
+
 				</div>
 				<div class="modal-footer justify-content-between ">
 					<span></span>

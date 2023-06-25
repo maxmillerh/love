@@ -25,3 +25,8 @@ btnMailOtmena.onclick = function() {
 	contentMailAdd.classList.add('d-none');
 }
 
+window.addEventListener('DOMContentLoaded', function() {
+	var image = document.querySelector('.profile-photo');
+	var width = image.offsetWidth;
+	image.style.height = width + 'px';
+});
